@@ -1,0 +1,13 @@
+.user-view {
+    display: flex;
+    height: 200px;
+
+}
+
+.user-img {
+    height: 200px;
+}
+
+.user-name {
+    margin-left: -160px
+}
