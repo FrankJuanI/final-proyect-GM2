@@ -9,7 +9,6 @@
 
 .card {
   min-height: 28rem;
-  max-height: 450px;
   width: auto;
   min-width: 14rem;
   max-width: 250px;
@@ -53,9 +52,10 @@
 }
 
 .buttons {
+  margin-top: 0.5em;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.8em;
 }
 
 .buy-now-button {
