@@ -15,7 +15,7 @@ interface Product {
 }
 
 export const useFetch = () => {
-  const [data, setData] = useState<Product>();
+  const [data, setData] = useState<Product[]>();
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
