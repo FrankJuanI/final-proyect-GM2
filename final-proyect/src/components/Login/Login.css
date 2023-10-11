@@ -1,0 +1,97 @@
+.login-card-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaeaea;
+}
+
+.login-card {
+  max-width: 1000px;
+  width: 60%;
+  height: 28rem;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+}
+
+.first-section {
+  content: "";
+  display: none;
+  background-color: #2969ee;
+  padding: 1.3rem;
+}
+
+.second-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 1.3em;
+  text-align: center;
+}
+
+.inputs-container {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.inputs-container input {
+  height: 2.5rem;
+  width: 100%;
+  border: none;
+  background-color: #d9d9d9;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+#signin-button {
+  background-color: #2969ee;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.buttons-container button {
+  height: 3rem;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #d9d9d9;
+}
+
+#google-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3rem;
+  align-items: center;
+  padding: 0 2em;
+  font-weight: 200;
+  font-style: 1.5rem;
+}
+
+.buttons-container button img {
+  height: 13px;
+}
+
+@media (min-width: 768px) {
+  .first-section {
+    display: block;
+    width: 50%;
+  }
+  .login-card {
+    display: flex;
+  }
+  .second-section {
+    width: 50%;
+  }
+}
