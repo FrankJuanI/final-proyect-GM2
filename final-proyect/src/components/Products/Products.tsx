@@ -1,144 +1,41 @@
-import { Card } from "../Card/Card";
-import "../Products/Products.css";
+import "./Products.css";
+import { Card } from "../Card/Card.jsx";
+import { UseDataContext } from "../../context/DataContext.ts";
+
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: [];
+}
+
+
 export function Products() {
+  const resdata = UseDataContext();
+  console.log("data: ", resdata);
   return (
-    <div className="products">
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
-      <Card
-        id={2}
-        image="https://nikearprod.vtexassets.com/arquivos/ids/698459/DH2925_111_A_PREM.jpg?v=638229587843630000"
-        title="Nike Air"
-        price={340}
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam maxime quaerat est, quia omnis veniam possimus sapiente similique delectus enim a dicta harum tempora ratione iusto deleniti, eligendi error rerum?"
-        discountPercentage={15}
-      />
+    <div className="cards-container">
+      {resdata &&
+        resdata.map((product) => {
+          return (
+            <Card
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              images={product.images}
+              description={product.description}
+              price={product.price}
+              discountPercentage={product.discountPercentage}
+            />
+          );
+        })}
     </div>
   );
 }
