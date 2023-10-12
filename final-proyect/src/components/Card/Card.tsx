@@ -2,17 +2,24 @@ import "./Card.css";
 
 interface CardProps {
   id: number;
-  image: string;
+  images: [];
   title: string;
   price: number;
   description: string;
   discountPercentage: number;
 }
 
-function Card({ id, image, title, price, description }: CardProps) {
+function Card({
+  id,
+  images,
+  title,
+  price,
+  description,
+  discountPercentage,
+}: CardProps) {
   return (
     <div className="card">
-      <img src={image} alt="" />
+      <img src={images[0]} alt="" />
       <div className="text-container">
         <h3>{`$${price}`}</h3>
         <h2>{title}</h2>

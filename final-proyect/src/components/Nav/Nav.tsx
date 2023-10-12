@@ -1,11 +1,10 @@
-import logo from "../../assets/gm2-logo.webp";
 import "./Nav.css";
 
 export function Nav() {
   return (
     <nav>
       <div className="about-info">
-        <img src={logo} alt="logo" />
+        <img src="gm2-logo.webp" alt="logo" />
         <p>The best ecommerce ever</p>
       </div>
       <div className="interactions">
