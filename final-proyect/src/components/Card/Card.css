@@ -23,7 +23,7 @@
   box-shadow: 0px 0px 10px #a2a2a2;
 }
 
-.card > img {
+.card>img {
   margin: 1em 0em;
   width: 100%;
   border-radius: 10px;
@@ -49,6 +49,10 @@
 
 .text-container p {
   text-align: left;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .buttons {
@@ -67,7 +71,7 @@
   background-color: #fbbf23;
 }
 
-.card > p {
+.card>p {
   font-size: 10px;
   text-align: start;
   text-decoration: underline;

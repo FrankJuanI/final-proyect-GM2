@@ -1,6 +1,7 @@
 import "./Products.css";
 import { Card } from "../Card/Card.jsx";
 import { UseDataContext } from "../../context/DataContext.ts";
+import "../Products/Products.css";
 
 interface Product {
   id: number;
@@ -16,11 +17,12 @@ interface Product {
   images: [];
 }
 
+
 export function Products() {
   const resdata = UseDataContext();
   console.log("data: ", resdata);
   return (
-    <div className="cards-container">
+    <div className="products">
       {resdata &&
         resdata.map((product) => {
           return (
@@ -35,6 +37,7 @@ export function Products() {
             />
           );
         })}
+
     </div>
   );
 }
