@@ -1,5 +1,9 @@
 import { Nav } from "../Nav/Nav";
 import { Carousel } from "../Carousel/Carousel";
+import "./ProductDetail.css";
+import { IncrementDecrement } from "../IncrementDecrement/IncrementDecrement";
+import heart from "../../assets/heart.svg";
+import cart from "../../assets/cart.svg";
 
 export function ProductsDetails() {
   const pictures = [
@@ -13,31 +17,51 @@ export function ProductsDetails() {
       <div className="content">
         <Carousel pictures={pictures} />
         <div className="product-info">
-          <h1>Nike Air 232</h1>
-          <p>Apple</p>
+          <div className="title-brand">
+            <h1>Nike Air 232</h1>
+            <p className="brand">Apple</p>
+          </div>
           <div className="price">
-            <p>550</p>
-            <p>320</p> {/* se tiene que calcular */}
+            <p className="old-price">$550</p>
+            <p className="new-price">$320</p> {/* se tiene que calcular */}
           </div>
           <div className="stock">
-            <p>34</p>
+            <p className="stock-title">34 item left</p>
             <div className="stock-bar">
-              <div></div>
+              <div className="progress-stock"></div>
             </div>
           </div>
-          <div className="description">
-            <p>description</p>
-            <h2>An apple mobile which is nothing like apple"</h2>
-            <p>Read More</p>
-          </div>
-          <div className="buy">
-            <p>Quantity</p>
-            <button>dsdsd</button>
-            <p>Maxim Purchase: 5</p>
-            <div className="buttons-actions">
-              <button>Buy Now</button>
-              <button>Add to Cart</button>
-              <button>Wish List</button>
+          <div className="description-buy">
+            <div className="description">
+              <p className="description-title">description</p>
+              <h2 className="description-text">
+                An apple mobile which is nothing like apple"
+              </h2>
+              <p className="read-more">Read More</p>
+            </div>
+            <div className="buy">
+              <div className="select-quantity">
+                <p className="quantity-title">Quantity</p>
+                <IncrementDecrement />
+                <p className="maximum-purchase">Maximum Purchase: 5</p>
+              </div>
+              <div className="buttons-actions">
+                <button className="buy-now">Buy Now</button>
+                <div className="add-to">
+                  <div className="cart">
+                    <button className="action">
+                      <img src={cart} alt="cart" />
+                      Add to Cart
+                    </button>
+                  </div>
+                  <div className="wish-list">
+                    <button className="action">
+                      <img src={heart} alt="heart" />
+                      Wish List
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@
 .carousel {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
 
 h1 {
@@ -38,6 +39,16 @@ button {
     cursor: pointer;
     padding: 1em;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-btn .arrow {
+    transform: rotate(45deg)
+}
+
+.right-btn .arrow {
+    transform: rotate(-45deg)
 }
 
 .right-btn .arrow {
