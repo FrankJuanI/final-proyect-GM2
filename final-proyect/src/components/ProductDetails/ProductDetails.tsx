@@ -37,7 +37,6 @@ export function ProductsDetails() {
               <h2 className="description-text">
                 An apple mobile which is nothing like apple"
               </h2>
-              <p className="read-more">Read More</p>
             </div>
             <div className="buy">
               <div className="select-quantity">
