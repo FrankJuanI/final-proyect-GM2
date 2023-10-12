@@ -16,6 +16,7 @@ interface Product {
   images: [];
 }
 
+
 export function Products() {
   const resdata = UseDataContext();
   console.log("data: ", resdata);
