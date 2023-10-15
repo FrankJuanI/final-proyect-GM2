@@ -1,12 +1,31 @@
-import { createContext, useContext, useCallback } from "react";
+import { createContext, useContext, useCallback, useState, useEffect } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+import { IncorrectCredenttials } from "../components/IncorrectCredentials/IncorrectCredentials";
 
 export const LoginStatusContext = createContext([]);
 
 export const useLoginStatus = () => useContext(LoginStatusContext);
 
+interface Auth{
+  email: string,
+  firstName: string,
+  gender: string,
+  id: number,
+  image: string,
+  lastName: string,
+  token: string,
+  userName: string
+}
+
+
 export const LoginStatusProvider = ({ children }) => {
+  const [auth, setAuth] = useState(); 
+  const [authenticated, setAuthenticated] = useState<boolean>()
+  const navigate = useNavigate();
+
+
   const getUserData = useCallback(
-    async (username: string, password: string) => {
+    async(username: string, password: string) => {
       try {
         const res = await fetch("https://dummyjson.com/auth/login", {
           method: "POST",
@@ -17,18 +36,21 @@ export const LoginStatusProvider = ({ children }) => {
           }),
         });
         const data = await res.json();
-        console.log(data);
+        if (data.message != undefined){
+          setAuthenticated(false)
+          return
+        }else{
+          navigate("/home")
+        }
       } catch (err) {
         console.log(err);
-        // return <IncorrectCredentials />;
       }
-    },
-    []
-  );
+    },[auth]);
 
   return (
-    <LoginStatusContext.Provider value={{ getUserData }}>
+    <LoginStatusContext.Provider value={{ auth, getUserData }}>
       {children}
+      {authenticated === false ? <IncorrectCredenttials/> : null}
     </LoginStatusContext.Provider>
   );
 };
