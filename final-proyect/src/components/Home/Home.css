@@ -1,0 +1,10 @@
+.latest-products {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.comments {
+    color: black;
+}
