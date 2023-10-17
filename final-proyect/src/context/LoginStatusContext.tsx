@@ -17,6 +17,7 @@ interface Auth {
 }
 
 export const LoginStatusProvider = ({ children }) => {
+  const [isAuth, setIsAuth] = useState(false);
   const [auth, setAuth] = useState();
   const navigate = useNavigate();
 
@@ -37,6 +38,7 @@ export const LoginStatusProvider = ({ children }) => {
           return;
         } else {
           setAuth(data);
+          setIsAuth(true);
           navigate("/home");
         }
       } catch (err) {

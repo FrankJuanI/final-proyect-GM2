@@ -4,7 +4,7 @@ import "./Nav.css";
 import { NotLoggedUserNav } from "./NotLoggedUser/NotLoggedUserNav";
 
 export function Nav() {
-  const { auth } = useLoginStatus();
+  const { isAuth } = useLoginStatus();
 
   return (
     <nav>
@@ -13,7 +13,7 @@ export function Nav() {
         <p>The best ecommerce ever</p>
       </div>
       <div className="interactions">
-        {auth ? <LoggedUserNav /> : <NotLoggedUserNav />}
+        {isAuth ? <LoggedUserNav /> : <NotLoggedUserNav />}
       </div>
     </nav>
   );

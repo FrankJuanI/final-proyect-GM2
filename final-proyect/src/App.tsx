@@ -5,6 +5,8 @@ import { DataContext } from "./context/DataContext.ts";
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./components/Login/Login.tsx";
 import { LoginStatusProvider } from "./context/LoginStatusContext.tsx";
+import { YouAreNotLoggedIn } from "./components/YouAreNotLogguedIn/YouAreNotLogguedIn.tsx";
+import { Metrics } from "./components/Metrics/Metrics.tsx";
 
 function App() {
   const { data } = useFetch();
@@ -13,8 +15,10 @@ function App() {
       <DataContext.Provider value={data}>
         <LoginStatusProvider>
           <Routes>
-            <Route path="home" element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/not-logguedin" element={<YouAreNotLoggedIn />} />
+            <Route path="/metrics" element={<Metrics />} />
           </Routes>
         </LoginStatusProvider>
       </DataContext.Provider>
