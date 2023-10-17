@@ -27,7 +27,7 @@ function Carousel({ pictures }: CarouselProps) {
 
   return (
     <div className="carousel">
-      <button className="left-btn" onClick={moveLeft}>
+      <button className="carousel-action left-btn" onClick={moveLeft}>
         <i className="arrow"></i>
       </button>
       <img
@@ -36,7 +36,7 @@ function Carousel({ pictures }: CarouselProps) {
         src={initialImage}
         alt=""
       />
-      <button className="right-btn" onClick={moveRight}>
+      <button className=" carousel-action right-btn" onClick={moveRight}>
         <i className="arrow"></i>
       </button>
     </div>
