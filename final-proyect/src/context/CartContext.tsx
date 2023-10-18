@@ -15,8 +15,16 @@ export const CartContextProvider = ({ children }) => {
       });
   }, []);
 
+  const getCartProductImg = useCallback((id) => {
+    fetch(`https://dummyjson.com/product/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        return `${data.images[0]}`;
+      });
+  }, []);
+
   return (
-    <CartContext.Provider value={{ cart, setCart, getCartData }}>
+    <CartContext.Provider value={{ cart, setCart, getCartData, getCartProductImg }}>
       {children}
     </CartContext.Provider>
   );
