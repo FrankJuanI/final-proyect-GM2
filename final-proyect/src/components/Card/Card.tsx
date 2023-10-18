@@ -1,5 +1,6 @@
+import { redirect } from "react-router-dom";
 import "./Card.css";
-
+import { useNavigate } from "react-router-dom";
 interface CardProps {
   id: number;
   images: [];
@@ -17,8 +18,9 @@ function Card({
   description,
   discountPercentage,
 }: CardProps) {
+  const navigate = useNavigate()
   return (
-    <div className="card">
+    <div className="card" onClick={()=> navigate(`/product-detail/${id}`)}>
       <img src={images[0]} alt="" />
       <div className="text-container">
         <h3>{`$${price}`}</h3>

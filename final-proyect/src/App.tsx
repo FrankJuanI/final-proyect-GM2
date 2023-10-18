@@ -5,6 +5,7 @@ import { DataContext } from "./context/DataContext.ts";
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./components/Login/Login.tsx";
 import { LoginStatusProvider } from "./context/LoginStatusContext.tsx";
+import { ProductsDetails } from "./components/ProductDetails/ProductDetails.tsx";
 
 function App() {
   const { data } = useFetch();
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="home" element={<Home />} />
             <Route path="login" element={<Login />} />
+            <Route path="product-detail/:id" element={<ProductsDetails />} />
           </Routes>
         </LoginStatusProvider>
       </DataContext.Provider>
