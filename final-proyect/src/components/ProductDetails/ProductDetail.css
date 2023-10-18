@@ -181,3 +181,31 @@
     background-color: #333;
     height: 2.5rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 30px 10px;
+    }
+
+    .add-to .action {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+
+    #carousel-image {
+        width: 275px;
+    }
+
+    .add-to {
+        flex-direction: column;
+        gap: 1.3rem;
+    }
+
+    .add-to .action {
+        width: 100%;
+    }
+}
