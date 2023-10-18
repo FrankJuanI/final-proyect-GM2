@@ -1,9 +1,10 @@
 import { Nav } from "../Nav/Nav";
 import "./Login.css";
 import { useLoginStatus } from "../../context/LoginStatusContext.tsx";
+import { IncorrectCredenttials } from "../IncorrectCredentials/IncorrectCredentials.tsx";
 
 export function Login() {
-  const { getUserData } = useLoginStatus();
+  const { auth, getUserLogin } = useLoginStatus();
 
   let emailInput = "";
   let passwordInput = "";
@@ -12,7 +13,7 @@ export function Login() {
     emailInput: string,
     passwordInput: string
   ) => {
-    await getUserData(emailInput, passwordInput);
+    await getUserLogin(emailInput, passwordInput);
   };
 
   return (
@@ -20,6 +21,7 @@ export function Login() {
       <Nav />
       <div className="login-card-container">
         <div className="login-card">
+          {auth != undefined ? <IncorrectCredenttials /> : null}
           <div className="first-section"></div>
           <div className="second-section">
             <h2>Sign In</h2>
@@ -32,7 +34,7 @@ export function Login() {
                     emailInput = event.target.value;
                     console.log(emailInput);
                   }}
-                  // value="kminchelle"
+                  defaultValue={"kminchelle"}
                 />
               </div>
               <div>
@@ -43,7 +45,7 @@ export function Login() {
                     passwordInput = event.target.value;
                     console.log(passwordInput);
                   }}
-                  // value="0lelplR"
+                  defaultValue="0lelplR"
                 />
               </div>
             </div>
@@ -63,6 +65,7 @@ export function Login() {
           </div>
         </div>
       </div>
+      {auth === "Invalid credenttials" ? <IncorrectCredenttials /> : null}
     </>
   );
 }
