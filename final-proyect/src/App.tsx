@@ -1,7 +1,6 @@
 import "./App.css";
 import { Shop } from "./components/Shop/Shop.tsx";
 import { useFetch } from "./hooks/useFetch.ts";
-import { useFetchImg } from "./hooks/useBannerImg.ts";
 import { DataContext } from "./context/DataContext.ts";
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./components/Login/Login.tsx";
@@ -13,7 +12,7 @@ function App() {
   const { data } = useFetch();
   return (
     <>
-      {/* <DataContext.Provider value={data}>
+      <DataContext.Provider value={data}>
         <LoginStatusProvider>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -21,9 +20,7 @@ function App() {
             <Route path="login" element={<Login />} />
           </Routes>
         </LoginStatusProvider>
-      </DataContext.Provider> */}
-      {/* <ProductsDetails /> */}
-      <Home />
+      </DataContext.Provider>
     </>
   );
 }
