@@ -1,10 +1,112 @@
 .latest-products {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    gap: 1em;
+}
+
+.title {
+    color: #EEEEEE;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.banner-img {
+    width: 80%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+
+.banner-img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(${Imgs[0]});
+    backdrop-filter: blur(5px);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.banner {
+    position: relative;
+    z-index: 1;
+    height: 90%;
+    width: 70%;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
 }
 
+.banner img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.about .about-text {
+    width: 85%;
+    text-align: center;
+    color: #EEEEEE;
+}
+
 .comments {
-    color: black;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    place-items: center;
+    margin: 30px 0;
+}
+
+.comment {
+    height: 175px;
+    background-color: #00ADB5;
+    border-radius: 5px;
+    width: 170px;
+    padding: 15px;
+}
+
+.user {
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid #eeeeeeee;
+    padding-bottom: 10px;
+}
+
+.user p {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.comment-text {
+    padding-top: 10px;
+    color: #393E46;
+}
+
+
+@media screen and (max-width: 767px) {
+    .comments {
+        display: flex;
+        flex-direction: column;
+    }
 }

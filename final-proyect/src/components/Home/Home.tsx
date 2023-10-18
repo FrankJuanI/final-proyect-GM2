@@ -1,8 +1,9 @@
 import { Nav } from "../Nav/Nav";
-import { useFetchImg } from "../../hooks/useBannerImg";
+import { useFetchImg } from "../../hooks/useHomeData";
 import "./Home.css";
 import { useEffect } from "react";
-import { useHomeData } from "../../hooks/UseHomeData";
+import { useHomeData } from "../../hooks/useHomeData";
+import userIcon from "../../../public/user-icon.svg";
 
 export const Home = () => {
   const Imgs = useFetchImg();
@@ -12,25 +13,39 @@ export const Home = () => {
     console.log(comments, about);
   }, [comments?.length]);
 
+  const BannerStyle = {
+    backgroundImage: `url(${Imgs[0]})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
     <>
       <Nav />
       <div className="latest-products">
-        <h2 className="home-title">Latest Products</h2>
-        <div className="Banner-img">
-          {Imgs != undefined ? <img src={`${Imgs[0]}`} alt="" /> : null}
+        <h2 className="title">Latest Product</h2>
+        <div className="banner-img" style={BannerStyle}>
+          <div className="banner">
+            {Imgs != undefined ? <img src={`${Imgs[0]}`} alt="" /> : null}
+          </div>
         </div>
       </div>
       <div className="about">
-        <p>About</p>
-        {about != null ? <h2>{about}</h2> : null}
+        <p className="title">About</p>
+        {about != null ? <h2 className="about-text">{about}</h2> : null}
       </div>
       <div className="comments">
-        {comments?.map((co) => {
+        <p className="title">Comments</p>
+        {comments?.map((comment) => {
           return (
-            <div className="comment">
-              <p>{co.user.username}</p>
-              <p>{co.body}</p>
+            <div className="comment" key={comment.id}>
+              <div className="user">
+                <img src={userIcon} alt="user-icon" />
+                <p>{comment.user.username}</p>
+              </div>
+              <div className="comment-text">
+                <p>{comment.body}</p>
+              </div>
             </div>
           );
         })}
