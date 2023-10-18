@@ -7,8 +7,9 @@ import { Login } from "./components/Login/Login.tsx";
 import { LoginStatusProvider } from "./context/LoginStatusContext.tsx";
 import { ProductsDetails } from "./components/ProductDetails/ProductDetails.tsx";
 import { Cart } from "./components/Cart/Cart.tsx";
-import { YouAreNotLoggedIn } from "./components/YouAreNotLogguedIn/YouAreNotLogguedIn.tsx";
+import { YouAreNotLoggedIn } from "./components/YouAreNotLoggedIn/YouAreNotLoggedIn.tsx";
 import { Metrics } from "./components/Metrics/Metrics.tsx";
+import { CartContextProvider } from "./context/CartContext.tsx";
 
 function App() {
   const { data } = useFetch();
@@ -16,14 +17,16 @@ function App() {
     <>
       <DataContext.Provider value={data}>
         <LoginStatusProvider>
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/product-detail/:id" element={<ProductsDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/not-logguedin" element={<YouAreNotLoggedIn />} />
-            <Route path="/metrics" element={<Metrics />} />
-          </Routes>
+          <CartContextProvider>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/product-detail/:id" element={<ProductsDetails />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
+              <Route path="/metrics" element={<Metrics />} />
+            </Routes>
+          </CartContextProvider>
         </LoginStatusProvider>
       </DataContext.Provider>
     </>

@@ -49,7 +49,7 @@ export const LoginStatusProvider = ({ children }) => {
   );
 
   return (
-    <LoginStatusContext.Provider value={{ auth, getUserLogin }}>
+    <LoginStatusContext.Provider value={{ auth, getUserLogin, isAuth }}>
       {children}
     </LoginStatusContext.Provider>
   );

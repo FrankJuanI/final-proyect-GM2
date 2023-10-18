@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Nav } from "../Nav/Nav";
-import "./YouAreNotLogguedIn.css";
+import "./YouAreNotLoggedIn.css";
 import { useNavigate } from "react-router-dom";
 export function YouAreNotLoggedIn() {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export function YouAreNotLoggedIn() {
       <Nav />
       <div className="not-log">
         <h3>You are not logged in</h3>
-        <p>Redirecting to Home in {numCount}</p>
+        <p>Redirecting to Login in {numCount}</p>
       </div>
     </>
   );

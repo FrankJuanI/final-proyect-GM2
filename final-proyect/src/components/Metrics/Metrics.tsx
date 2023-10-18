@@ -9,7 +9,7 @@ export function Metrics() {
 
   useEffect(() => {
     if (!isAuth) {
-      navigate("/not-logguedin");
+      navigate("/not-loggedin");
     }
   }, []);
 
