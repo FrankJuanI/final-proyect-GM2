@@ -110,3 +110,10 @@
         flex-direction: column;
     }
 }
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .comments{
+        grid-template-columns: repeat(3 , 1fr);
+    }
+}
