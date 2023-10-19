@@ -83,6 +83,7 @@ button {
     transform: rotate(135deg);
 }
 
+
 /* Estilos para pantallas más pequeñas */
 @media screen and (max-width: 768px) {
     .carousel {
@@ -91,6 +92,16 @@ button {
 
     #carousel-image {
         width: 250px;
+    }
+
+@media only screen and (max-width: 425px) {
+    .carousel {
+        gap: .3rem;
+    }
+
+    #carousel-image {
+        width: 275px;
+
     }
 
     .right-btn .arrow,
@@ -113,5 +124,11 @@ button {
     .right-btn .arrow,
     .left-btn .arrow {
         padding: 3px;
+    }
+        padding: 4px;
+    }
+
+    .carousel-action {
+        width: 1em;
     }
 }

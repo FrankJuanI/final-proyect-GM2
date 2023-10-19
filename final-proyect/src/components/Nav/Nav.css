@@ -53,3 +53,60 @@ nav {
   width: 38px;
   height: 38px;
 }
+
+.button-menu{
+  display: none;
+}
+
+
+@media only screen and (max-width: 575px) {
+  nav {
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  .about-info {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .about-info img {
+    height: auto;
+    margin-bottom: 12px;
+  }
+
+  .interactions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .interactions.IsNoActive{
+    display: none;
+  }
+  .interactions ul {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .button-menu{
+    display: flex;
+    background-color: black;
+    margin-right: .5rem;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 991px) {
+  .about-info {
+    width: 50%;
+    text-align: left;
+  }
+
+  .interactions ul {
+    gap: 24px;
+  }
+  
+  .interactions IsNoActive{
+    display: none;
+  }
+}
