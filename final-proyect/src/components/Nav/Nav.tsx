@@ -17,12 +17,12 @@ export function Nav() {
       <div className="about-info">
         <img src="gm2-logo.webp" alt="logo" />
         <p>The best ecommerce ever</p>
-        <button className="button-menu" onClick={ toggleMenu}>
+        <button className={`button-menu ${!isAuth ? "desenable-button" : `` }`} onClick={ toggleMenu}>
           <img src={IconMenu} alt="Menu" />
         </button>
       </div>
       <div className="interactions">
-        {isAuth ? <LoggedUserNav /> : <NotLoggedUserNav />}
+        {isAuth ? <LoggedUserNav className={`interactions ${menu ? `IsNoActive` : `` }`}/> : <NotLoggedUserNav />}
         {/* <div className={`interactions ${menu ? `IsNoActive` : `` }`}>
         <ul>
           <li>
@@ -46,8 +46,8 @@ export function Nav() {
             </a>
           </li>
         </ul>
-        </div>
-        <a href="">
+        </div> */}
+        {/* <a href="">
           <img
             className="user-image"
             src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
