@@ -1,13 +1,10 @@
 import { Nav } from "../Nav/Nav";
 import "./Login.css";
 import { useLoginStatus } from "../../context/LoginStatusContext.tsx";
-import { useEffect, useState } from "react";
 import { IncorrectCredenttials } from "../IncorrectCredentials/IncorrectCredentials.tsx";
 
 export function Login() {
-  const { getUserData } = useLoginStatus();
-  const [credentialsState, setCredentialsState] = useState() ;
-  const [auth, setAuth] = useState()
+  const { auth, getUserLogin } = useLoginStatus();
 
   let emailInput = "";
   let passwordInput = "";
@@ -16,7 +13,7 @@ export function Login() {
     emailInput: string,
     passwordInput: string
   ) => {
-    setAuth(await getUserData(emailInput, passwordInput))
+    await getUserLogin(emailInput, passwordInput);
   };
 
   return (
@@ -24,9 +21,7 @@ export function Login() {
       <Nav />
       <div className="login-card-container">
         <div className="login-card">
-          {
-            auth != undefined ? <IncorrectCredenttials/> : null
-          }
+          {auth != undefined ? <IncorrectCredenttials /> : null}
           <div className="first-section"></div>
           <div className="second-section">
             <h2>Sign In</h2>
@@ -40,7 +35,6 @@ export function Login() {
                     console.log(emailInput);
                   }}
                   defaultValue={"kminchelle"}
-
                 />
               </div>
               <div>
@@ -71,6 +65,7 @@ export function Login() {
           </div>
         </div>
       </div>
+      {auth === "Invalid credenttials" ? <IncorrectCredenttials /> : null}
     </>
   );
 }

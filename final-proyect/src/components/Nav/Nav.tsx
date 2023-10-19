@@ -1,4 +1,9 @@
+import { useLoginStatus } from "../../context/LoginStatusContext";
+import { LoggedUserNav } from "./LoggedUser/LoggedUserNav";
 import "./Nav.css";
+import { NotLoggedUserNav } from "./NotLoggedUser/NotLoggedUserNav";
+export function Nav() {
+  const { isAuth } = useLoginStatus();
 import IconMenu from "../../../public/NavResponsiveIcon.svg";
 import { useState } from "react";
 export function Nav() {
@@ -7,6 +12,7 @@ export function Nav() {
   const toggleMenu= ()=>{
       setMenu(!menu)
   }
+
   return (
     <nav>
       <div className="about-info">
@@ -16,6 +22,8 @@ export function Nav() {
           <img src={IconMenu} alt="Menu" />
         </button>
       </div>
+      <div className="interactions">
+        {isAuth ? <LoggedUserNav /> : <NotLoggedUserNav />}
       <div className={`interactions ${menu ? `IsNoActive` : `` }`}>
         <ul>
           <li>

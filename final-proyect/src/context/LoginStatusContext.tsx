@@ -1,31 +1,28 @@
-import { createContext, useContext, useCallback, useState, useEffect } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
-import { IncorrectCredenttials } from "../components/IncorrectCredentials/IncorrectCredentials";
+import { createContext, useContext, useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const LoginStatusContext = createContext([]);
 
 export const useLoginStatus = () => useContext(LoginStatusContext);
 
-interface Auth{
-  email: string,
-  firstName: string,
-  gender: string,
-  id: number,
-  image: string,
-  lastName: string,
-  token: string,
-  userName: string
+interface Auth {
+  email: string;
+  firstName: string;
+  gender: string;
+  id: number;
+  image: string;
+  lastName: string;
+  token: string;
+  userName: string;
 }
 
-
 export const LoginStatusProvider = ({ children }) => {
-  const [auth, setAuth] = useState(); 
-  const [authenticated, setAuthenticated] = useState<boolean>()
+  const [isAuth, setIsAuth] = useState(false);
+  const [auth, setAuth] = useState();
   const navigate = useNavigate();
 
-
-  const getUserData = useCallback(
-    async(username: string, password: string) => {
+  const getUserLogin = useCallback(
+    async (username: string, password: string) => {
       try {
         const res = await fetch("https://dummyjson.com/auth/login", {
           method: "POST",
@@ -36,21 +33,24 @@ export const LoginStatusProvider = ({ children }) => {
           }),
         });
         const data = await res.json();
-        if (data.message != undefined){
-          setAuthenticated(false)
-          return
-        }else{
-          navigate("/home")
+        if (data.message != undefined) {
+          setAuth(data.message);
+          return;
+        } else {
+          setAuth(data);
+          setIsAuth(true);
+          navigate("/home");
         }
       } catch (err) {
         console.log(err);
       }
-    },[auth]);
+    },
+    [auth]
+  );
 
   return (
-    <LoginStatusContext.Provider value={{ auth, getUserData }}>
+    <LoginStatusContext.Provider value={{ auth, getUserLogin, isAuth }}>
       {children}
-      {authenticated === false ? <IncorrectCredenttials/> : null}
     </LoginStatusContext.Provider>
   );
 };

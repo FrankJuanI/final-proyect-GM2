@@ -83,7 +83,16 @@ button {
     transform: rotate(135deg);
 }
 
-@media only screen and (max-width: 768px) {}
+
+/* Estilos para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .carousel {
+        gap: 0.5;
+    }
+
+    #carousel-image {
+        width: 250px;
+    }
 
 @media only screen and (max-width: 425px) {
     .carousel {
@@ -92,15 +101,34 @@ button {
 
     #carousel-image {
         width: 275px;
+
     }
 
     .right-btn .arrow,
     .left-btn .arrow {
+        padding: 5px;
+    }
+}
+
+
+/* Estilos para pantallas aún más pequeñas */
+@media screen and (max-width: 480px) {
+    .carousel {
+        gap: 0.5rem;
+    }
+
+    #carousel-image {
+        width: 150px;
+    }
+
+    .right-btn .arrow,
+    .left-btn .arrow {
+        padding: 3px;
+    }
         padding: 4px;
     }
 
     .carousel-action {
         width: 1em;
     }
-
 }

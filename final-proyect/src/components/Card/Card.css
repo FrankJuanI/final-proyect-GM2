@@ -9,9 +9,11 @@
 
 .card {
   min-height: 28rem;
-  width: auto;
+  width: 100%;
   min-width: 14rem;
-  max-width: 250px;
+  max-width: 300px;
+  box-sizing: border-box;
+  height: 100%;
   display: flex;
   flex-direction: column;
   border: 1px solid gray;
@@ -23,11 +25,14 @@
   box-shadow: 0px 0px 10px #a2a2a2;
 }
 
-.card>img {
+.product>img {
   margin: 1em 0em;
   width: 100%;
+  max-height: 300px;
   border-radius: 10px;
+  object-fit: cover;
 }
+
 
 .text-container {
   display: flex;
@@ -60,6 +65,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.8em;
+}
+
+.buttons button {
+  height: 40px;
 }
 
 .buy-now-button {
