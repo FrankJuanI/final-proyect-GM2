@@ -19,6 +19,7 @@ function Card({
   description,
   discountPercentage,
 }: CardProps) {
+  
   const navigate = useNavigate()
   const {addLocalCartProduct} = useCartContext()
 
