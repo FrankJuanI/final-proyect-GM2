@@ -1,7 +1,7 @@
 .cart-container {
   width: 100vw;
   height: auto;
-  padding-top: 3rem;
+  background-color: #eee;
 }
 
 .cart-container img {
@@ -18,7 +18,6 @@
 }
 
 .cart-resume-container {
-  height: 500px;
   min-width: 800px;
   max-width: 90%;
   width: auto;
@@ -182,7 +181,7 @@
   border: none;
   background-color: #1e1e1e;
   color: white;
-  width: 80%;
+  width: 100%;
   border-radius: 0;
   margin: 0 auto;
 }

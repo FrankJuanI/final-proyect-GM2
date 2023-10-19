@@ -8,10 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const navigate = useNavigate();
-  const { cart, localCart, getCartData } = useCartContext();
+  const { localCart, getCartData } = useCartContext();
   const { isAuth, auth } = useLoginStatus();
 
-  console.log("cart: ", cart)
   console.log("localCart: ", localCart)
 
   useEffect(() => {
@@ -20,15 +19,15 @@ export function Cart() {
     }
   }, []);
 
-  useEffect(() => {
-    const getData = async () => {
-      await getCartData(auth.id);
-    };
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     await getCartData(auth.id);
+  //   };
 
-    if (auth != undefined) {
-      getData();
-    }
-  }, [auth]);
+  //   if (auth != undefined) {
+  //     getData();
+  //   }
+  // }, [auth]);
 
 
   const quantity = 3;
@@ -43,9 +42,9 @@ export function Cart() {
 
         <div className="cart-resume-container">
           <div className="cart-rows-container">
-            {cart && auth
+            {/* {cart && auth
           ? cart.map((product) => <CartRow product={product} />)
-          : null}
+          : null} */}
             {
               localCart.map((product) => <CartRow product={product} />)
             }

@@ -1,23 +1,26 @@
-import { createContext, useContext, useCallback, useState } from "react";
+import { createContext, useContext, useCallback, useState, useEffect } from "react";
 
 export const CartContext = createContext([]);
 
 export const useCartContext = () => useContext(CartContext);
 
-import { useGetProductDetail } from "../hooks/useGetProductDetail.ts";
 
 export const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
   const [localCart, setLocalCart] = useState([])
+  const [load, setLoad] = useState(false)
 
   const getCartData = useCallback((id) => {
-    fetch(`https://dummyjson.com/carts/user/${id}`)
+      const newCart = [...localCart]
+      fetch(`https://dummyjson.com/carts/user/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.carts[0].product)
-        setCart(data.carts[0].products);
-      });
-  }, []);
+        newCart.push(...data.carts[0].products)
+        setLocalCart(newCart);
+        console.log("fetch a carrito api")
+        setLoad(!load)
+      });        
+    }, []);
+    
 
   const getCartProductImg = useCallback((id) => {
     fetch(`https://dummyjson.com/product/${id}`)
@@ -29,20 +32,17 @@ export const CartContextProvider = ({ children }) => {
 
   const addLocalCartProduct = (id)=>{
     const newCart = [...localCart]
-    console.log("desestructured oldCart: ", newCart)
-    console.log(id)
-    console.log("fetch desde addlocal: ")
     fetch(`https://dummyjson.com/product/${id}`)
     .then((res) => res.json())
     .then((data) => {
         newCart.push(data)
+        setLocalCart(newCart)
+        console.log(newCart)
       });
-    setLocalCart(newCart)
-    console.log("cart: ", newCart)
   }
 
   return (
-    <CartContext.Provider value={{ cart, localCart, setCart, getCartData, getCartProductImg, addLocalCartProduct }}>
+    <CartContext.Provider value={{ localCart, setLocalCart, getCartData, getCartProductImg, addLocalCartProduct, load, setLoad}}>
       {children}
     </CartContext.Provider>
   );
