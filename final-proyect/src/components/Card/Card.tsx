@@ -30,8 +30,9 @@ function Card({
       <div className="buttons">
         <button className="add-to-cart-button">Add to cart</button>
         <button className="buy-now-button">Buy now</button>
+        <p>Read Reviews</p>
       </div>
-      <p>Read Reviews</p>
+      
     </div>
   );
 }
