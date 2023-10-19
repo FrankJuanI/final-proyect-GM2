@@ -2,7 +2,7 @@ import { useLoginStatus } from "../../context/LoginStatusContext";
 import { LoggedUserNav } from "./LoggedUser/LoggedUserNav";
 import "./Nav.css";
 import { NotLoggedUserNav } from "./NotLoggedUser/NotLoggedUserNav";
-import IconMenu from "../../../public/NavResponsiveIcon.svg";
+import IconMenu from "/NavResponsiveIcon.svg";
 import { useState } from "react";
 
 export function Nav() {

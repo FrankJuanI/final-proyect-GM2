@@ -8,9 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const navigate = useNavigate();
-  const { cart, getCartData } = useCartContext();
-  
+  const { cart, localCart, getCartData } = useCartContext();
   const { isAuth, auth } = useLoginStatus();
+
+  console.log("cart: ", cart)
+  console.log("localCart: ", localCart)
 
   useEffect(() => {
     if (!isAuth) {
@@ -44,6 +46,9 @@ export function Cart() {
             {cart && auth
           ? cart.map((product) => <CartRow product={product} />)
           : null}
+            {
+              localCart.map((product) => <CartRow product={product} />)
+            }
           </div>
           <div className="cart-total-container">
             <div className="total-resume-header">

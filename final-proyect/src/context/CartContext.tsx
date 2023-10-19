@@ -4,10 +4,11 @@ export const CartContext = createContext([]);
 
 export const useCartContext = () => useContext(CartContext);
 
+import { useGetProductDetail } from "../hooks/useGetProductDetail.ts";
+
 export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [localCart, setLocalCart] = useState([])
-
 
   const getCartData = useCallback((id) => {
     fetch(`https://dummyjson.com/carts/user/${id}`)
@@ -26,10 +27,16 @@ export const CartContextProvider = ({ children }) => {
       });
   }, []);
 
-  const addLocalCartProduct = (product)=>{
+  const addLocalCartProduct = (id)=>{
     const newCart = [...localCart]
     console.log("desestructured oldCart: ", newCart)
-    newCart.push(product)
+    console.log(id)
+    console.log("fetch desde addlocal: ")
+    fetch(`https://dummyjson.com/product/${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+        newCart.push(data)
+      });
     setLocalCart(newCart)
     console.log("cart: ", newCart)
   }
