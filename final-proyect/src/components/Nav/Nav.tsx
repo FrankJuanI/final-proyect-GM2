@@ -1,13 +1,22 @@
 import "./Nav.css";
-
+import IconMenu from "../../../public/NavResponsiveIcon.svg";
+import { useState } from "react";
 export function Nav() {
+
+  const [menu, setMenu] = useState(true)
+  const toggleMenu= ()=>{
+      setMenu(!menu)
+  }
   return (
     <nav>
       <div className="about-info">
         <img src="gm2-logo.webp" alt="logo" />
         <p>The best ecommerce ever</p>
+        <button className="button-menu" onClick={ toggleMenu}>
+          <img src={IconMenu} alt="Menu" />
+        </button>
       </div>
-      <div className="interactions">
+      <div className={`interactions ${menu ? `IsNoActive` : `` }`}>
         <ul>
           <li>
             <a className="link" href="">
