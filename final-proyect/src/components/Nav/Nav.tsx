@@ -2,12 +2,11 @@ import { useLoginStatus } from "../../context/LoginStatusContext";
 import { LoggedUserNav } from "./LoggedUser/LoggedUserNav";
 import "./Nav.css";
 import { NotLoggedUserNav } from "./NotLoggedUser/NotLoggedUserNav";
-export function Nav() {
-  const { isAuth } = useLoginStatus();
 import IconMenu from "../../../public/NavResponsiveIcon.svg";
 import { useState } from "react";
-export function Nav() {
 
+export function Nav() {
+  const { isAuth } = useLoginStatus();
   const [menu, setMenu] = useState(true)
   const toggleMenu= ()=>{
       setMenu(!menu)
@@ -24,7 +23,7 @@ export function Nav() {
       </div>
       <div className="interactions">
         {isAuth ? <LoggedUserNav /> : <NotLoggedUserNav />}
-      <div className={`interactions ${menu ? `IsNoActive` : `` }`}>
+        {/* <div className={`interactions ${menu ? `IsNoActive` : `` }`}>
         <ul>
           <li>
             <a className="link" href="">
@@ -47,13 +46,14 @@ export function Nav() {
             </a>
           </li>
         </ul>
+        </div>
         <a href="">
           <img
             className="user-image"
             src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
             alt="user-image"
           />
-        </a>
+        </a> */}
       </div>
     </nav>
   );
