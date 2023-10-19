@@ -49,21 +49,28 @@ export function Cart() {
             <div className="total-resume-header">
               <h2>Summary</h2>
             </div>
-            <div>
-              <div><p>ITEMS: 3</p></div>
-              <div><p>$$$$</p></div>
+            <div className="total-resume-items-count">
+              <div><p>ITEMS:</p></div>
+              <div><p>3</p></div>
             </div>
-            <div>
+            <div className="total-resume-shipping">
               <p>SHIPPING</p>
-              <div style={{width:"80%", height:"40px", backgroundColor:"black"}}></div>
+              <select name="Select Shipping" id="select-shipping">
+                <option value="">Pick up in store</option>
+                <option value="">Standard-Delivery- $5.00</option>
+                <option value="">Premium-Delivery- $15</option>
+              </select>
             </div>
-            <div>
+            <div className="total-resume-code-container">
               <p>GIVE CODE</p>
-              <div style={{width:"80%", height:"40px", backgroundColor:"black"}}></div>
+              <input type="text" />
             </div>
-            <div>
+            <div className="total-resume-toal-price">
               <div>TOTAL PRICE:</div>
-              <div>$$$$</div>
+              <div style={{color:"green"}}>$$$$</div>
+            </div>
+            <div className="total-resume-checkout">
+              <button>CHECKOUT</button>
             </div>
           </div>
         </div>

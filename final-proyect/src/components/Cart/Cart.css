@@ -19,12 +19,13 @@
 .cart-resume-container {
   height: 500px;
   min-width: 800px;
+  max-width: 90%;
   width: auto;
-  /* border: 1px solid #333333; */
+  margin: 0 auto;
   margin-top: 2rem;
-  margin-left: 6rem;
   display: flex;
   gap: 2rem;
+
 }
 
 .cart-resume-header {
@@ -46,7 +47,7 @@
 }
 
 .cart-rows-container{
-  width: 65%;
+  width: 70%;
 }
 
 .product-description {
@@ -73,6 +74,21 @@
   gap: 0.5rem;
 }
 
+.buttons-quantity button{
+  border: none;
+  background-color: #f1f1f1;
+  height: auto;
+  width: auto;
+  box-sizing: border-box;
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+}
+
+.buttons-quantity button:hover{
+  background-color: #e7e7e7;
+}
+
 .product-row {
   display: grid;
   justify-content: space-around;
@@ -83,7 +99,10 @@
 }
 
 .cart-total-container{
-  width: 35%;
+  padding: 1.5em;
+  width: 30%;
+  box-sizing: border-box;
+  height: auto;
 }
 
 .total-resume-header{
@@ -91,4 +110,78 @@
   border-bottom: 1px solid #eee;
   position: relative;
   display: block;
+  margin-bottom: 1em;
+}
+
+.total-resume-header h2{
+  font-size: 2.3em;
+  margin-left: 0.3em;
+  margin-bottom: 0.6em;
+}
+
+.total-resume-items-count{
+  padding: 1em 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-resume-items-count p{
+  font-size: 1.3rem;
+}
+
+.total-resume-shipping{
+  font-size: 1.4rem;
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  gap:0.3rem
+}
+
+#select-shipping{
+  height: 40px;
+  width: 60%;
+  background-color: #e6e6e6;
+  font-size: 1rem;
+}
+
+.total-resume-shipping option{
+  font-size: 1rem;
+}
+
+
+.total-resume-code-container{
+  font-size: 1.4rem;
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  gap:0.3rem
+}
+
+.total-resume-code-container input{
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #e6e6e6;
+  padding-left: 1em;
+  box-sizing: border-box;
+}
+
+.total-resume-toal-price{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+
+.total-resume-checkout{
+  padding-top: 1.8em;
+}
+
+.total-resume-checkout button{
+  height: 45px;
+  border: none;
+  background-color: #1e1e1e;
+  color: white;
+  width: 80%;
+  border-radius: 0;
+  margin: 0 auto;
 }

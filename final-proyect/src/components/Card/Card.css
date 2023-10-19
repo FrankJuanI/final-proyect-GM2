@@ -25,13 +25,14 @@
   box-shadow: 0px 0px 10px #a2a2a2;
 }
 
-.card>img {
+.product>img {
   margin: 1em 0em;
   width: 100%;
   max-height: 300px;
   border-radius: 10px;
   object-fit: cover;
 }
+
 
 .text-container {
   display: flex;
