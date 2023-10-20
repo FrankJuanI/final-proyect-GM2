@@ -1,22 +1,33 @@
-import { createContext, useContext, useCallback, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useState,
+  useEffect,
+} from "react";
+import { LoginStatusContext } from "./LoginStatusContext";
 
 export const CartContext = createContext([]);
 
 export const useCartContext = () => useContext(CartContext);
 
 export const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-  const [localCart, setLocalCart] = useState([])
+  const [localCart, setLocalCart] = useState([]);
+  const [load, setLoad] = useState(false);
 
-
-  const getCartData = useCallback((id) => {
-    fetch(`https://dummyjson.com/carts/user/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.carts[0].product)
-        setCart(data.carts[0].products);
-      });
-  }, []);
+  const getCartData = useCallback(
+    (id) => {
+      fetch(`https://dummyjson.com/carts/user/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("FRANK", { data, localCart });
+          setLocalCart([...localCart, ...data.carts[0].products]);
+          console.log("fetch a carrito api");
+          setLoad(!load);
+        });
+    },
+    [localCart]
+  );
 
   const getCartProductImg = useCallback((id) => {
     fetch(`https://dummyjson.com/product/${id}`)
@@ -26,16 +37,26 @@ export const CartContextProvider = ({ children }) => {
       });
   }, []);
 
-  const addLocalCartProduct = (product)=>{
-    const newCart = [...localCart]
-    console.log("desestructured oldCart: ", newCart)
-    newCart.push(product)
-    setLocalCart(newCart)
-    console.log("cart: ", newCart)
-  }
+  const addLocalCartProduct = (id) => {
+    fetch(`https://dummyjson.com/product/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setLocalCart([...localCart, data]);
+      });
+  };
 
   return (
-    <CartContext.Provider value={{ cart, localCart, setCart, getCartData, getCartProductImg, addLocalCartProduct }}>
+    <CartContext.Provider
+      value={{
+        localCart,
+        setLocalCart,
+        getCartData,
+        getCartProductImg,
+        addLocalCartProduct,
+        load,
+        setLoad,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

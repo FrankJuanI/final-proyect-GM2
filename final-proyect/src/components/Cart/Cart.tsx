@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const navigate = useNavigate();
-  const { cart, getCartData } = useCartContext();
-  
+  const { localCart, getCartData } = useCartContext();
   const { isAuth, auth } = useLoginStatus();
 
   useEffect(() => {
@@ -28,7 +27,6 @@ export function Cart() {
     }
   }, [auth]);
 
-
   const quantity = 3;
   return (
     <>
@@ -41,17 +39,24 @@ export function Cart() {
 
         <div className="cart-resume-container">
           <div className="cart-rows-container">
-            {cart && auth
+            {/* {cart && auth
           ? cart.map((product) => <CartRow product={product} />)
-          : null}
+          : null} */}
+            {localCart.map((product) => (
+              <CartRow product={product} />
+            ))}
           </div>
           <div className="cart-total-container">
             <div className="total-resume-header">
               <h2>Summary</h2>
             </div>
             <div className="total-resume-items-count">
-              <div><p>ITEMS:</p></div>
-              <div><p>3</p></div>
+              <div>
+                <p>ITEMS:</p>
+              </div>
+              <div>
+                <p>3</p>
+              </div>
             </div>
             <div className="total-resume-shipping">
               <p>SHIPPING</p>
@@ -67,7 +72,7 @@ export function Cart() {
             </div>
             <div className="total-resume-toal-price">
               <div>TOTAL PRICE:</div>
-              <div style={{color:"green"}}>$$$$</div>
+              <div style={{ color: "green" }}>$$$$</div>
             </div>
             <div className="total-resume-checkout">
               <button>CHECKOUT</button>

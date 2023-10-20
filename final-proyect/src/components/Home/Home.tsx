@@ -3,7 +3,7 @@ import { useFetchImg } from "../../hooks/useHomeData";
 import "./Home.css";
 import { useEffect } from "react";
 import { useHomeData } from "../../hooks/useHomeData";
-import userIcon from "../../../public/user-icon.svg";
+import userIcon from "/user-icon.svg";
 
 export const Home = () => {
   const Imgs = useFetchImg();

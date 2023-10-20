@@ -1,8 +1,6 @@
 import { createContext, useContext, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 export const LoginStatusContext = createContext([]);
-
 export const useLoginStatus = () => useContext(LoginStatusContext);
 
 interface Auth {
@@ -20,6 +18,7 @@ export const LoginStatusProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [auth, setAuth] = useState();
   const navigate = useNavigate();
+
 
   const getUserLogin = useCallback(
     async (username: string, password: string) => {
@@ -54,3 +53,4 @@ export const LoginStatusProvider = ({ children }) => {
     </LoginStatusContext.Provider>
   );
 };
+

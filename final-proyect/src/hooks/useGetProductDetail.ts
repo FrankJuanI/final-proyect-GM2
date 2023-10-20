@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 
 
-export function useGetProductDetail({id}){
+export function useGetProductDetail(id){
     const [productDetail, setProductDetail] = useState()
     useEffect(() =>{
         fetch(`https://dummyjson.com/products/${id}`)
