@@ -11,24 +11,21 @@ export function Cart() {
   const { localCart, getCartData } = useCartContext();
   const { isAuth, auth } = useLoginStatus();
 
-  console.log("localCart: ", localCart)
-
   useEffect(() => {
     if (!isAuth) {
       navigate("/not-loggedin");
     }
   }, []);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     await getCartData(auth.id);
-  //   };
+  useEffect(() => {
+    const getData = async () => {
+      await getCartData(auth.id);
+    };
 
-  //   if (auth != undefined) {
-  //     getData();
-  //   }
-  // }, [auth]);
-
+    if (auth != undefined) {
+      getData();
+    }
+  }, [auth]);
 
   const quantity = 3;
   return (
@@ -45,17 +42,21 @@ export function Cart() {
             {/* {cart && auth
           ? cart.map((product) => <CartRow product={product} />)
           : null} */}
-            {
-              localCart.map((product) => <CartRow product={product} />)
-            }
+            {localCart.map((product) => (
+              <CartRow product={product} />
+            ))}
           </div>
           <div className="cart-total-container">
             <div className="total-resume-header">
               <h2>Summary</h2>
             </div>
             <div className="total-resume-items-count">
-              <div><p>ITEMS:</p></div>
-              <div><p>3</p></div>
+              <div>
+                <p>ITEMS:</p>
+              </div>
+              <div>
+                <p>3</p>
+              </div>
             </div>
             <div className="total-resume-shipping">
               <p>SHIPPING</p>
@@ -71,7 +72,7 @@ export function Cart() {
             </div>
             <div className="total-resume-toal-price">
               <div>TOTAL PRICE:</div>
-              <div style={{color:"green"}}>$$$$</div>
+              <div style={{ color: "green" }}>$$$$</div>
             </div>
             <div className="total-resume-checkout">
               <button>CHECKOUT</button>

@@ -17,8 +17,8 @@ function App() {
   const { data } = useFetch();
   return (
     <>
-      <DataContext.Provider value={data}>
-        <LoginStatusProvider>
+      <LoginStatusProvider>
+        <DataContext.Provider value={data}>
           <CartContextProvider>
             <Routes>
               <Route path="/home" element={<Home />} />
@@ -30,8 +30,8 @@ function App() {
               <Route path="/metrics" element={<Metrics />} />
             </Routes>
           </CartContextProvider>
-        </LoginStatusProvider>
-      </DataContext.Provider>
+        </DataContext.Provider>
+      </LoginStatusProvider>
     </>
   );
 }
