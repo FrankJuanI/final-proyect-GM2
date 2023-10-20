@@ -2,7 +2,7 @@ import "./LoggedUserNav.css";
 import "../Nav.css";
 import { useNavigate } from "react-router-dom";
 
-export function LoggedUserNav({ className }) {
+export function LoggedUserNav() {
   const navigate = useNavigate();
 
   return (

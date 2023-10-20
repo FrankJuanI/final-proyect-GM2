@@ -4,6 +4,7 @@
 }
 
 nav {
+  height: 100%;
   padding: 2rem 3rem;
   box-sizing: border-box;
   height: 4em;
@@ -21,6 +22,10 @@ nav {
   width: 30%;
   height: 100%;
   margin-left: 8px;
+}
+
+.box-logo {
+  background-color: transparent;
 }
 
 .about-info img {
@@ -67,7 +72,7 @@ nav {
     flex-direction: column;
     align-items: center;
     height: 100%;
-    gap: 10px;
+    gap: 20px;
   }
 
   .about-info {
@@ -76,6 +81,10 @@ nav {
     align-items: center;
     margin: 0;
     padding-top: 10px;
+  }
+
+  .about-info p.nav-title {
+    font-size: 12px;
   }
 
   .about-info img {
@@ -87,6 +96,17 @@ nav {
     display: flex;
     flex-direction: column;
     margin: 0;
+    gap: 10px;
+  }
+
+  .interactions button {
+    width: 100vw;
+    background-color: black;
+    color: whitesmoke;
+  }
+
+  .interactions a {
+    margin-bottom: 15px;
   }
 
   .interactions.IsNoActive {
@@ -95,7 +115,7 @@ nav {
 
   .interactions ul {
     flex-direction: column;
-    gap: 12px;
+    gap: 0;
   }
 
   .button-menu {
