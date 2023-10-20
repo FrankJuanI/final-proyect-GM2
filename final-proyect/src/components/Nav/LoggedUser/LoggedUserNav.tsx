@@ -23,14 +23,18 @@ export function LoggedUserNav({ className }) {
           <button onClick={() => navigate("/Shop")}>Shop</button>
         </li>
       </ul>
-      <ul>
+      <ul className="user-options">
         <li>
-          <img src={userImg} alt="" style={{ height: "30px" }} />
-          <button>Profile</button>
+          <button>
+            <img src={userImg} alt="" />
+            Profile
+          </button>
         </li>
         <li>
-          <img src={exitImg} alt="" style={{ height: "30px" }} />
-          <button>Log out</button>
+          <button>
+            <img src={exitImg} alt="" />
+            Log out
+          </button>
         </li>
       </ul>
       <a href="">
