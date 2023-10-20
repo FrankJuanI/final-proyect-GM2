@@ -19,7 +19,6 @@ export const LoginStatusProvider = ({ children }) => {
   const [auth, setAuth] = useState();
   const navigate = useNavigate();
 
-
   const getUserLogin = useCallback(
     async (username: string, password: string) => {
       try {
@@ -38,7 +37,7 @@ export const LoginStatusProvider = ({ children }) => {
         } else {
           setAuth(data);
           setIsAuth(true);
-          navigate("/home");
+          navigate("/");
         }
       } catch (err) {
         console.log(err);
@@ -53,4 +52,3 @@ export const LoginStatusProvider = ({ children }) => {
     </LoginStatusContext.Provider>
   );
 };
-
