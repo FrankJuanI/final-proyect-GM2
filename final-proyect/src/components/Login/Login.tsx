@@ -4,7 +4,7 @@ import { useLoginStatus } from "../../context/LoginStatusContext.tsx";
 import { IncorrectCredenttials } from "../IncorrectCredentials/IncorrectCredentials.tsx";
 
 export function Login() {
-  const { auth, getUserLogin } = useLoginStatus();
+  const { auth, getUserLogin /*login*/ } = useLoginStatus();
 
   let emailInput = "";
   let passwordInput = "";
@@ -14,6 +14,7 @@ export function Login() {
     passwordInput: string
   ) => {
     await getUserLogin(emailInput, passwordInput);
+    // await login(emailInput, passwordInput);
   };
 
   return (
