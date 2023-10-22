@@ -86,10 +86,16 @@ nav {
   .about-info p.nav-title {
     font-size: 12px;
   }
-
+  .box-logo{
+  padding:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
   .about-info img {
     height: auto;
     margin-right: 10px;
+    padding: 0;
   }
 
   .interactions {
@@ -103,6 +109,7 @@ nav {
     width: 100vw;
     background-color: black;
     color: whitesmoke;
+    margin-bottom: 1em;
   }
 
   .interactions a {
