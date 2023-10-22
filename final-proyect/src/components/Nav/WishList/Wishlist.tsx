@@ -1,32 +1,19 @@
+import { useWishListContext } from "../../../context/WishListContext.tsx"
 import {WishProduct} from "./WishProduct/WishProduct.tsx"
-
-    interface CartItem {
-        image: string;
-        id: number;
-        name: string;
-    }
 
 
 
 export function Wishlist (){
 
-    const cartString = localStorage.getItem("cart");
-    let cart: CartItem[] = [];
+    const { wishlist } = useWishListContext([])
 
-    if (cartString) {
-        try {
-            cart = JSON.parse(cartString);
-        } catch (error) {
-            console.error("Error al analizar los datos del carrito desde JSON:", error);
-        }
-    }
-
+    console.log(wishlist)
 
     return (
         <ul>
             <h3>Wishlist</h3>
             {
-              cart.map((product => <WishProduct product={product}/>))
+             wishlist &&  wishlist.map((product => <WishProduct product={product}/>))
             }
         </ul>
     )
