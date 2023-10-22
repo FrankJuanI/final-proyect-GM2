@@ -1,4 +1,3 @@
-import "./LoggedUserNav.css";
 import "../Nav.css";
 import { useNavigate } from "react-router-dom";
 import userImg from "/user.png";
@@ -10,7 +9,8 @@ import { Wishlist } from "../WishList/Wishlist";
 export function LoggedUserNav({ className }) {
   
   const {signOut} = useLoginStatus()
-  
+
+
   const navigate = useNavigate();
 
   const [showWishlist, setShowWishList] = useState<boolean>(false)
