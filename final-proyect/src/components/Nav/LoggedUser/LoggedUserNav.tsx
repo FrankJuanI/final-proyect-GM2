@@ -4,12 +4,20 @@ import { useNavigate } from "react-router-dom";
 import userImg from "/user.png";
 import exitImg from "/exit.png";
 import { useLoginStatus } from "../../../context/LoginStatusContext";
+import { useEffect } from "react";
+import { Wishlist } from "../WishList/Wishlist";
 
 export function LoggedUserNav({ className }) {
   
   const {signOut} = useLoginStatus()
   
   const navigate = useNavigate();
+
+
+  useEffect(()=>{
+    const cart = JSON.stringify(localStorage.getItem("cart"))
+    console.log(cart)
+  },[])
 
 
   return (
@@ -23,6 +31,7 @@ export function LoggedUserNav({ className }) {
         </li>
         <li>
           <button onClick={() => navigate("/Wishlist")}>Wishlist</button>
+          <Wishlist/>
         </li>
         <li>
           <button onClick={() => navigate("/Shop")}>Shop</button>
