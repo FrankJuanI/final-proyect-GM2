@@ -8,7 +8,7 @@ export function Login() {
 
   let emailInput = "";
   let passwordInput = "";
-
+  console.log(auth)
   const handleLoginButton = async (
     emailInput: string,
     passwordInput: string

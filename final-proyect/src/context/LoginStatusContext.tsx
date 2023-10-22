@@ -37,29 +37,32 @@ export const LoginStatusProvider = ({ children, login }) => {
 
   const getUserLogin = useCallback(
     async (username: string, password: string) => {
-      try {
-        const res = await fetch("https://dummyjson.com/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-          }),
-        });
-        const data = await res.json();
-        if (data.message != undefined) {
-          setAuth(data.message);
-          return;
-        } else {
-          setAuth(data);
-          setIsAuth(true);
-          console.log(typeof data);
-          localStorage.setItem("session", JSON.stringify(data));
-          navigate("/");
+      console.log("isAuth: ", isAuth)
+      // if (!isAuth) {
+        try {
+          const res = await fetch("https://dummyjson.com/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: username,
+              password: password,
+            }),
+          });
+          const data = await res.json();
+          if (data.message != undefined) {
+            setAuth(data.message);
+            return;
+          } else {
+            setAuth(data);
+            setIsAuth(true);
+            console.log(typeof data);
+            localStorage.setItem("session", JSON.stringify(data));
+            navigate("/");
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
+      // } 
     },
     [auth]
   );

@@ -20,9 +20,7 @@ function App() {
 
   const login = () => {
     const session = JSON.parse(localStorage.getItem("session"));
-    console.log(session);
     if (session != null) {
-      console.log("app session: ", session);
       return session;
     }
   };
