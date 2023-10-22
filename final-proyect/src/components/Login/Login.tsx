@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export function Login() {
   const { auth, getUserLogin, isAuth } = useLoginStatus();
   const navigate = useNavigate()
-
+  
   let emailInput = "";
   let passwordInput = "";
   
@@ -19,19 +19,18 @@ export function Login() {
     await getUserLogin(emailInput, passwordInput);
   };
 
-
   useEffect(()=>{
     if (isAuth) {
       navigate("/");
     }
   },[])
 
-
   return (
     <>
       <Nav />
       <div className="login-card-container">
         <div className="login-card">
+          {auth != undefined ? <IncorrectCredenttials /> : null}
           <div className="first-section"></div>
           <div className="second-section">
             <h2>Sign In</h2>
@@ -75,7 +74,6 @@ export function Login() {
           </div>
         </div>
       </div>
-      {auth === "Invalid credenttials" ? <IncorrectCredenttials /> : null}
     </>
   );
 }

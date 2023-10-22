@@ -61,9 +61,16 @@ export const LoginStatusProvider = ({ children, login }) => {
     [auth]
   );
 
+    const signOut = () => {
+      localStorage.removeItem("session");
+      setAuth(undefined);
+      setIsAuth(false);
+      navigate("/");
+    }
+
 
   return (
-    <LoginStatusContext.Provider value={{ auth, getUserLogin, isAuth }}>
+    <LoginStatusContext.Provider value={{ auth, getUserLogin, isAuth, signOut }}>
       {children}
     </LoginStatusContext.Provider>
   );
