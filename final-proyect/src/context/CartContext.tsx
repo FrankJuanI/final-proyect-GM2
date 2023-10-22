@@ -20,9 +20,7 @@ export const CartContextProvider = ({ children }) => {
       fetch(`https://dummyjson.com/carts/user/${id}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("FRANK", { data, localCart });
           setLocalCart([...localCart, ...data.carts[0].products]);
-          console.log("fetch a carrito api");
           setLoad(!load);
         });
     },

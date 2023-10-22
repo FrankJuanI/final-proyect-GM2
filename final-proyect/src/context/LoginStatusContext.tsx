@@ -25,11 +25,8 @@ export const LoginStatusProvider = ({ children, login }) => {
   const [auth, setAuth] = useState();
   const navigate = useNavigate();
 
-  console.log("login from login context: ", login);
-
   useEffect(() => {
     if (login != undefined) {
-      console.log("verifyin login", login);
       setAuth(login);
       setIsAuth(true);
     }
@@ -37,8 +34,6 @@ export const LoginStatusProvider = ({ children, login }) => {
 
   const getUserLogin = useCallback(
     async (username: string, password: string) => {
-      console.log("isAuth: ", isAuth)
-      // if (!isAuth) {
         try {
           const res = await fetch("https://dummyjson.com/auth/login", {
             method: "POST",
@@ -62,10 +57,10 @@ export const LoginStatusProvider = ({ children, login }) => {
         } catch (err) {
           console.log(err);
         }
-      // } 
     },
     [auth]
   );
+
 
   return (
     <LoginStatusContext.Provider value={{ auth, getUserLogin, isAuth }}>

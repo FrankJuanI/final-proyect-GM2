@@ -11,8 +11,9 @@ export function Cart() {
   const { localCart, getCartData } = useCartContext();
   const { isAuth, auth } = useLoginStatus();
 
+
   useEffect(() => {
-    if (!isAuth) {
+    if (isAuth === false) {
       navigate("/not-loggedin");
     }
   }, []);
@@ -39,9 +40,6 @@ export function Cart() {
 
         <div className="cart-resume-container">
           <div className="cart-rows-container">
-            {/* {cart && auth
-          ? cart.map((product) => <CartRow product={product} />)
-          : null} */}
             {localCart.map((product) => (
               <CartRow product={product} />
             ))}
