@@ -8,9 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const navigate = useNavigate();
-  const { localCart, getCartData } = useCartContext();
+  const { localCart, getCartData , removeFromCart } = useCartContext();
   const { isAuth, auth } = useLoginStatus();
-
   useEffect(() => {
     if (!isAuth) {
       navigate("/not-loggedin");
@@ -43,7 +42,7 @@ export function Cart() {
           ? cart.map((product) => <CartRow product={product} />)
           : null} */}
             {localCart.map((product) => (
-              <CartRow product={product} />
+              <CartRow product={product} removeFromCar={removeFromCart} />
             ))}
           </div>
           <div className="cart-total-container">
@@ -55,7 +54,7 @@ export function Cart() {
                 <p>ITEMS:</p>
               </div>
               <div>
-                <p>3</p>
+                <p>{localCart.length}</p>
               </div>
             </div>
             <div className="total-resume-shipping">

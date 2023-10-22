@@ -11,7 +11,7 @@ export function ProductsDetails() {
 
   const {id} = useParams()
 
-  const productDetail = useGetProductDetail({id})
+  const productDetail = useGetProductDetail(id)
 
   console.log(productDetail)
 
