@@ -9,7 +9,6 @@ export function Shop() {
       <Nav />
       <div>
         <Products />
-        <SideBar />
       </div>
     </>
   );

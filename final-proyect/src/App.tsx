@@ -21,7 +21,7 @@ function App() {
         <DataContext.Provider value={data}>
           <CartContextProvider>
             <Routes>
-              <Route path="/home" element={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/product-detail/:id" element={<ProductsDetails />} />

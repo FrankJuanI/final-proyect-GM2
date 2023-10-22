@@ -11,6 +11,7 @@
     color: #EEEEEE;
     font-weight: bold;
     font-size: 2rem;
+    color: #000;
 }
 
 .banner-img {
@@ -66,7 +67,8 @@
 .about .about-text {
     width: 85%;
     text-align: center;
-    color: #EEEEEE;
+    color: #313030;
+
 }
 
 .comments {
@@ -113,7 +115,7 @@
 
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .comments{
-        grid-template-columns: repeat(3 , 1fr);
+    .comments {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
