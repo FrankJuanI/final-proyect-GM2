@@ -7,7 +7,6 @@ export function Wishlist (){
 
     const { wishlist } = useWishListContext([])
 
-    console.log("wishlist desde wishlist: ", wishlist)
 
     return (
         <ul className="wishlist-ul">
