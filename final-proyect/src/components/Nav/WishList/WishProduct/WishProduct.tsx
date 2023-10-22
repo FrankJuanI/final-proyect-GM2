@@ -6,10 +6,10 @@ export function WishProduct ({product}){
     const navigate = useNavigate()
 
     return (
-        <li onClick={()=> navigate(`/product-detail/${product.id}`)}>
+        <li onClick={()=> navigate(`/product-detail/${product.id}`)} className="wish-product">
             <img src={product.image} alt="" />
             <h3>{product.name}</h3>
-            <button>Remove</button>
+            <button><img src="/close2.png" alt="" /></button>
         </li>
     )
 }

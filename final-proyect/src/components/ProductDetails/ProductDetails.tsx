@@ -24,9 +24,7 @@ export function ProductsDetails() {
   }
 
   const handleClick = () => {
-    const wishlist = JSON.parse(localStorage.getItem("wishlist"))
     addToWishlist(productDetail)
-    localStorage.setItem("wishlist", JSON.stringify(newWishlist))
   }
 
 

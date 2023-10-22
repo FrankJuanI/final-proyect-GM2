@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import userImg from "/user.png";
 import exitImg from "/exit.png";
 import { useLoginStatus } from "../../../context/LoginStatusContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Wishlist } from "../WishList/Wishlist";
 
 export function LoggedUserNav({ className }) {
@@ -13,11 +13,16 @@ export function LoggedUserNav({ className }) {
   
   const navigate = useNavigate();
 
+  const [showWishlist, setShowWishList] = useState<boolean>(false)
+
 
   useEffect(()=>{
     const cart = JSON.stringify(localStorage.getItem("cart"))
-    console.log(cart)
   },[])
+
+  const handleShowWishListButton = ()=> {
+    setShowWishList(!showWishlist)
+  }
 
 
   return (
@@ -29,9 +34,9 @@ export function LoggedUserNav({ className }) {
         <li>
           <button onClick={() => navigate("/cart")}>Cart</button>
         </li>
-        <li>
-          <button onClick={() => navigate("/Wishlist")}>Wishlist</button>
-          <Wishlist/>
+        <li style={{position:"relative"}}>
+          <button onClick={() => handleShowWishListButton()}>Wishlist</button>
+          {showWishlist === true? <Wishlist/> : null}
         </li>
         <li>
           <button onClick={() => navigate("/Shop")}>Shop</button>
