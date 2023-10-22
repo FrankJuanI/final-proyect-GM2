@@ -66,6 +66,41 @@ nav {
   display: none;
 }
 
+
+.user-options {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: auto;
+  width: auto;
+  gap: 0rem !important;
+  right: 0px;
+  z-index: 90;
+  background-color: #f9f9f9;
+}
+
+.user-options li{
+  width: 150px;
+  border: 1px solid black
+}
+
+.user-options li button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40px auto;
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+#profile-button{
+  border-bottom: none;
+}
+
+.user-options img{
+  height: 30px;
+}
+
+
 @media only screen and (max-width: 575px) {
   nav {
     padding: 0;
