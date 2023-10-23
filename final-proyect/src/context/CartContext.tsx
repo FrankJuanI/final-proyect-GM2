@@ -38,20 +38,6 @@ export const CartContextProvider = ({ children }) => {
     setLocalCart(updatedLocalCart);
   };
 
-  // const removeFromCart = (id) => {
-  //   const updatedCart = localCart.filter((product) => product.id !== id);
-  //   setLocalCart(updatedCart);
-  // };
-
-  // const getCartData = useCallback((id) => {
-  //   fetch(`https://dummyjson.com/carts/user/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setLocalCart([...localCart, ...data.carts[0].products]);
-  //       setLoad(!load);
-  //     });
-  // }, []);
-
   const getCartProductImg = useCallback((id) => {
     fetch(`https://dummyjson.com/product/${id}`)
       .then((res) => res.json())
@@ -59,14 +45,6 @@ export const CartContextProvider = ({ children }) => {
         return `${data.images[0]}`;
       });
   }, []);
-
-  // const addLocalCartProduct = (id) => {
-  //   fetch(`https://dummyjson.com/product/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setLocalCart([...localCart, data]);
-  //     });
-  // };
 
   return (
     <CartContext.Provider
