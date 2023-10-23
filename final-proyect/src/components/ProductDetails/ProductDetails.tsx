@@ -6,28 +6,30 @@ import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
 import { useParams } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
+import { useWishListContext } from "../../context/WishListContext.tsx";
+import { useState } from "react";
+import { Wishlist } from "../Nav/WishList/Wishlist.tsx";
 
 export function ProductsDetails() {
 
+  const {addToWishlist} = useWishListContext()
+
   const {id} = useParams()
 
-  const productDetail = useGetProductDetail({id})
+  const productDetail = useGetProductDetail(id)
 
-  console.log(productDetail)
-
-  console.log(id)
 
   const calculateDiscount = (price, discount) => {
     return price - (price * discount / 100)
   }
 
-  const pictures = [
-    "https://nikearprod.vtexassets.com/arquivos/ids/311222/DD8959_108_A_PREM.jpg?v=638122456034070000",
-    "https://nikearprod.vtexassets.com/arquivos/ids/699311/DH2920_001_A_PREM.jpg?v=638229667061330000",
-    "https://nikearprod.vtexassets.com/arquivos/ids/698461/DH4072_001_A_PREM.jpg?v=638229587866770000",
-  ];
+  const handleClick = () => {
+    addToWishlist(productDetail)
+  }
+
+
   return (
-    
+
     <>
       <Nav />
       <div className="content">
@@ -59,7 +61,7 @@ export function ProductsDetails() {
             <div className="buy">
               <div className="select-quantity">
                 <p className="quantity-title">Quantity</p>
-                <IncrementDecrement />
+                <IncrementDecrement/>
                 <p className="maximum-purchase">Maximum Purchase: {productDetail && productDetail.stock}</p>
               </div>
               <div className="buttons-actions">
@@ -72,8 +74,8 @@ export function ProductsDetails() {
                     </button>
                   </div>
                   <div className="wish-list">
-                    <button className="action">
-                      <img src={heart} alt="heart" />
+                    <button className="action"  onClick={()=> handleClick()}>
+                      <img src={heart} alt="heart"/>
                       Wish List
                     </button>
                   </div>

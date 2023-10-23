@@ -14,31 +14,36 @@ import { YouAreNotLoggedIn } from "./components/YouAreNotLoggedIn/YouAreNotLogge
 import { Metrics } from "./components/Metrics/Metrics.tsx";
 import { CartContextProvider } from "./context/CartContext.tsx";
 import { Home } from "./components/Home/Home.tsx";
-
+import { WishListContextProvider } from "./context/WishListContext.tsx";
 function App() {
   const { data } = useFetch();
 
   const login = () => {
-    const session = JSON.parse(localStorage.getItem("session"));
+    const session = JSON.parse(localStorage.getItem("session"))
     if (session != null) {
       return session;
     }
   };
+
+  
+
 
   return (
     <>
       <LoginStatusProvider login={login()}>
         <DataContext.Provider value={data}>
           <CartContextProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/shop" element={<Shop />} />
-              <Route path="/product-detail/:id" element={<ProductsDetails />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
-              <Route path="/metrics" element={<Metrics />} />
-            </Routes>
+            <WishListContextProvider>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route path="/product-detail/:id" element={<ProductsDetails />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
+                <Route path="/metrics" element={<Metrics />} />
+              </Routes>
+            </WishListContextProvider>
           </CartContextProvider>
         </DataContext.Provider>
       </LoginStatusProvider>
