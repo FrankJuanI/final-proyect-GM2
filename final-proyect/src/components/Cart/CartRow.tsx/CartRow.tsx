@@ -4,23 +4,22 @@ import "../Cart.css";
 
 export function CartRow({ product }) {
   const [img, setImg] = useState();
-
-  const { deleteFromCart, localCart } = useCartContext();
+  const { deleteFromCart, localCart, substractionProductQuantity, addToCart } =
+    useCartContext();
 
   const handleRemoveClick = () => {
     deleteFromCart(product);
   };
 
-  const [productQuantity, setProductQuantity] = useState(0);
+  // const substractionProductQuantity = () => {
+  //   if (productQuantity === 0) {
+  //     setProductQuantity(0);
+  //   } else {
+  //     setProductQuantity(productQuantity - 1);
+  //   }
+  // };
 
-  const substractionProductQuantity = () => {
-    if (productQuantity === 0) {
-      setProductQuantity(0);
-    } else {
-      setProductQuantity(productQuantity - 1);
-    }
-  };
-  const addProductQuantity = () => setProductQuantity(productQuantity + 1);
+  // const addProductQuantity = () => setProductQuantity(productQuantity + 1);
 
   useEffect(() => {
     fetch(`https://dummyjson.com/product/${product.id}`)
@@ -39,11 +38,13 @@ export function CartRow({ product }) {
       <div className="product-buy-details">
         <h4>$ {product.price}</h4>
         <div className="buttons-quantity">
-          <button onClick={substractionProductQuantity}>-</button>
-          <p>{productQuantity}</p>
-          <button onClick={addProductQuantity}>+</button>
+          <button onClick={() => substractionProductQuantity(product.id)}>
+            -
+          </button>
+          <p>{product.quantity}</p>
+          <button onClick={() => addToCart(product)}>+</button>
         </div>
-        <h4>$ {product.price * productQuantity}</h4>
+        {/* <h4>$ {product.price * productQuantity}</h4> */}
         <div id="img-delete-row">
           <button onClick={handleRemoveClick}>
             <img src="close2.png" alt="" />
