@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./IncrementDecrement.css";
 
 export function IncrementDecrement() {
-  const [count, setCount] = useState(0); // useState returns a pair. 'count' is the current state. 'setCount' is a function we can use to update the state.
+  const [count, setCount] = useState(0);
 
   function increment() {
     setCount(function (prevCount) {

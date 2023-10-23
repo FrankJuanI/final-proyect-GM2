@@ -23,7 +23,9 @@ export function Products() {
     <div className="products">
       {resdata &&
         resdata.map((product) => {
-          return <Card productDetail={product} />;
+          return (
+            <Card key={product.title + product.id} productDetail={product} />
+          );
         })}
     </div>
   );

@@ -32,7 +32,10 @@ export function Cart() {
         <div className="cart-resume-container">
           <div className="cart-rows-container">
             {localCart.map((product) => (
-              <CartRow product={product} />
+              <CartRow
+                key={"rowcart" + product.title + product.id}
+                product={product}
+              />
             ))}
           </div>
           <div className="cart-total-container">
