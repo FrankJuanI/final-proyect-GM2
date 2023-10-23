@@ -21,8 +21,8 @@ interface Auth {
 }
 
 export const LoginStatusProvider = ({ children, login }) => {
-  const [isAuth, setIsAuth] = useState(false);
-  const [auth, setAuth] = useState();
+  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [auth, setAuth] = useState<Auth[]>();
   const navigate = useNavigate();
 
   useEffect(() => {

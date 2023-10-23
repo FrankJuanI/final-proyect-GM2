@@ -1,16 +1,14 @@
-import "./LoggedUserNav.css";
 import "../Nav.css";
 import { useNavigate } from "react-router-dom";
 import userImg from "/user.png";
 import exitImg from "/exit.png";
 import { useLoginStatus } from "../../../context/LoginStatusContext";
 
-export function LoggedUserNav({ className }) {
+export function LoggedUserNav() {
   
   const {signOut} = useLoginStatus()
   
   const navigate = useNavigate();
-
 
   return (
     <>

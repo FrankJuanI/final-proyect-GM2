@@ -3,6 +3,7 @@ import { LoggedUserNav } from "./LoggedUser/LoggedUserNav";
 import { NotLoggedUserNav } from "./NotLoggedUser/NotLoggedUserNav";
 import IconMenu from "/NavResponsiveIcon.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Nav() {
   const { isAuth } = useLoginStatus();
@@ -10,29 +11,20 @@ export function Nav() {
   const toggleMenu = () => {
     setMenu(!menu);
   };
-  const NavStyle = {
-    height: isAuth ? "100%" : "100px",
-  };
+  const navigate = useNavigate();
   return (
-    <nav style={NavStyle}>
+    <nav>
       <div className="about-info">
-        <img className="logo" src="gm2-logo.webp" alt="logo" />
-        <p>The best ecommerce ever</p>
-        <button
-          className={`button-menu ${!isAuth ? `desenable-button` : ``}`}
-          onClick={toggleMenu}
-        >
+        <button className="box-logo" onClick={() => navigate("/")}>
+          <img className="logo" src="gm2-logo.webp" alt="logo" />
+        </button>
+        <p className="nav-title">The best ecommerce ever</p>
+        <button className={`button-menu`} onClick={toggleMenu}>
           <img src={IconMenu} alt="Menu" />
         </button>
       </div>
-      <div className="interactions">
-        {isAuth ? (
-          <LoggedUserNav
-            className={`interactions ${menu ? `IsNoActive` : ``}`}
-          />
-        ) : (
-          <NotLoggedUserNav />
-        )}
+      <div className={`interactions ${menu ? `IsNoActive` : ``}`}>
+        {isAuth ? <LoggedUserNav /> : <NotLoggedUserNav />}
       </div>
     </nav>
   );
