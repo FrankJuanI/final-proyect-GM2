@@ -19,11 +19,11 @@ export function Login() {
     await getUserLogin(emailInput, passwordInput);
   };
 
-  useEffect(()=>{
-    if (isAuth) {
-      navigate("/");
-    }
-  },[])
+
+  if (isAuth) {
+    navigate("/");
+  }
+
 
   return (
     <>
