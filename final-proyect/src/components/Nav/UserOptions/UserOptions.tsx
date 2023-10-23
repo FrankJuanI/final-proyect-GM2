@@ -12,13 +12,13 @@ export function UserOptions ({}){
     return (
         <ul className="user-options">
             <li id="profile-button" onClick={() => navigate("/profile") }>
-              <button>
+              <button className="user-profile-button">
                 <img src={userImg} alt=""  />
                 Profile
               </button>
             </li>
             <li>
-              <button onClick={()=> signOut()}>
+              <button className="sign-out-button" onClick={()=> signOut()}>
                 <img src={exitImg} alt="" />
                 Sign Out
               </button>

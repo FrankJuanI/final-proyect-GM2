@@ -98,6 +98,7 @@ nav {
   border-bottom: none;
 }
 
+
 .user-options img{
   height: 30px;
 }
@@ -166,6 +167,9 @@ nav {
     display: flex;
     background-color: black;
     margin-right: .5rem;
+  }
+  button.user-profile-button, button.sign-out-button{
+    color: black ;
   }
 }
 
