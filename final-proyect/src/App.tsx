@@ -11,16 +11,16 @@ import {
 import { ProductsDetails } from "./components/ProductDetails/ProductDetails.tsx";
 import { Cart } from "./components/Cart/Cart.tsx";
 import { YouAreNotLoggedIn } from "./components/YouAreNotLoggedIn/YouAreNotLoggedIn.tsx";
-import { Metrics } from "./components/Metrics/Metrics.tsx";
 import { CartContextProvider } from "./context/CartContext.tsx";
 import { Home } from "./components/Home/Home.tsx";
+import { CheckoutPage } from "./components/CheckoutPage/Checkout.tsx";
 import { UserProfile } from "./components/UserProfile/UserProfile.tsx";
 import { WishListContextProvider } from "./context/WishListContext.tsx";
 function App() {
   const { data } = useFetch();
 
   const login = () => {
-    const session = JSON.parse(localStorage.getItem("session"))
+    const session = JSON.parse(localStorage.getItem("session"));
     if (session != null) {
       return session;
     }
@@ -36,10 +36,14 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/shop" element={<Shop />} />
-                <Route path="/product-detail/:id" element={<ProductsDetails />} />
+                <Route
+                  path="/product-detail/:id"
+                  element={<ProductsDetails />}
+                />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
-                <Route path="/profile" element={<UserProfile/>} />
+                <Route path="/profile" element={<UserProfile />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
               </Routes>
             </WishListContextProvider>
           </CartContextProvider>
