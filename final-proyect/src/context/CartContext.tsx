@@ -15,6 +15,11 @@ export const CartContextProvider = ({ children }) => {
   const [localCart, setLocalCart] = useState([]);
   const [load, setLoad] = useState(false);
 
+  const removeFromCart = (id) => {
+    const updatedCart = localCart.filter((product) => product.id !== id);
+    setLocalCart(updatedCart);
+  };
+
   const getCartData = useCallback(
     (id) => {
       fetch(`https://dummyjson.com/carts/user/${id}`)
@@ -51,6 +56,7 @@ export const CartContextProvider = ({ children }) => {
         getCartData,
         getCartProductImg,
         addLocalCartProduct,
+        removeFromCart,
         load,
         setLoad,
       }}

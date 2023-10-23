@@ -1,11 +1,20 @@
 import { useCallback, useEffect, useState } from "react";
 import { useCartContext } from "../../../context/CartContext";
 import "../Cart.css";
-export function CartRow({ product }) {
+export function CartRow({ product,removeFromCar}) {
   const { getCartProductImg } = useCartContext();
 
   const [img, setImg] = useState();
-
+  const handleRemoveClick = () => {
+    removeFromCar(product.id); 
+  }
+  const [productQuantity,setProductQuantity]=useState(0) 
+  
+  const substractionProductQuantity = ()=>{if(productQuantity===0){
+    setProductQuantity(0)
+  }else{setProductQuantity(productQuantity-1)}}
+  const addProductQuantity = ()=>setProductQuantity(productQuantity+1)
+  
   useEffect(() => {
     fetch(`https://dummyjson.com/product/${product.id}`)
       .then((res) => res.json())
@@ -13,25 +22,25 @@ export function CartRow({ product }) {
         setImg(data.images[0]);
       });
   }, []);
-
-  const quantity = 3;
   return (
     <div className="product-row">
       <div className="product-description">
         <img src={img} alt="" />
         <h4>{product.title}</h4>
       </div>
-      <h4>$ {product.price}</h4>
-      <div className="buttons-quantity">
-        <button>-</button>
-        <p>3</p>
-        <button>+</button>
-      </div>
-      <h4>$ {product.price * quantity}</h4>
-      <div id="img-delete-row">
-        <button>
-          <img src="close2.png" alt="" />
-        </button>
+      <div className="product-buy-details">
+        <h4>$ {product.price}</h4>
+        <div className="buttons-quantity">
+          <button onClick={substractionProductQuantity}>-</button>
+          <p>{productQuantity}</p>
+          <button onClick={addProductQuantity}>+</button>
+        </div>
+        <h4>$ {product.price * productQuantity}</h4>
+        <div id="img-delete-row">
+          <button onClick={handleRemoveClick}>
+            <img src="close2.png" alt="" />
+          </button>
+        </div>
       </div>
     </div>
   );
