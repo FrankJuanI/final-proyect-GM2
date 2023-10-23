@@ -31,6 +31,7 @@ export const WishListContextProvider = ({ children }) => {
         setWishlist(updatedWishlist);
     };
     
+    
 
     return (
         <WishListContext.Provider value={{ addToWishlist, wishlist, deleteFromWishlist }}>
