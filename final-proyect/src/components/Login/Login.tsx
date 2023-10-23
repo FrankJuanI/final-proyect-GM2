@@ -46,7 +46,6 @@ export function Login() {
                   type="text"
                   onChange={(event) => {
                     emailInput = event.target.value;
-                    console.log(emailInput);
                   }}
                   defaultValue={"kminchelle"}
                 />
@@ -57,7 +56,6 @@ export function Login() {
                   type="text"
                   onChange={(event) => {
                     passwordInput = event.target.value;
-                    console.log(passwordInput);
                   }}
                   defaultValue="0lelplR"
                 />

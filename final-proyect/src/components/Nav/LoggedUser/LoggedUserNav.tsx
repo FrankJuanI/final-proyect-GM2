@@ -29,9 +29,6 @@ export function LoggedUserNav() {
     <>
       <ul>
         <li>
-          <button onClick={() => navigate("/metrics")}>Metric</button>
-        </li>
-        <li>
           <button onClick={() => navigate("/cart")}>Cart</button>
         </li>
         <li style={{position:"relative"}}>
