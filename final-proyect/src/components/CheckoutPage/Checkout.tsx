@@ -27,11 +27,21 @@ export const CheckoutPage = () => {
               <input placeholder="CARDHOLDER NAME" type="text" />
               <br />
               <div className="important-card-info">
-                <input placeholder="MM" type="text" />
+                <div >
+                  <label htmlFor="">EXPIRY MOUNTH</label>
+                <input className="specific-data" placeholder="MM" type="text" />
+                </div>
                 <br />
-                <input placeholder="YY" type="text" />
+                  <div>
+                    <label htmlFor="">EXPIRY YEAR</label>
+                  <input className="specific-data" placeholder="YY" type="text" />
+                  </div>
                 <br />
-                <input placeholder="CVV" type="text" />
+
+              <div>
+                <label htmlFor="">CVC</label>
+              <input className="specific-data" placeholder="CVV" type="text" />
+              </div>
                 <br />
               </div>
               <input className="submit" type="submit" value={"PAY"} />
