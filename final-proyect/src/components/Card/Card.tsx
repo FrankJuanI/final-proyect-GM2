@@ -1,4 +1,3 @@
-import { redirect } from "react-router-dom";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
