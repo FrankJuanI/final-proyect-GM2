@@ -22,8 +22,6 @@ export function CartRow({ product,removeFromCar}) {
         setImg(data.images[0]);
       });
   }, []);
-
-  const quantity = 3;
   return (
     <div className="product-row">
       <div className="product-description">
@@ -37,7 +35,7 @@ export function CartRow({ product,removeFromCar}) {
           <p>{productQuantity}</p>
           <button onClick={addProductQuantity}>+</button>
         </div>
-        <h4>$ {product.price * quantity}</h4>
+        <h4>$ {product.price * productQuantity}</h4>
         <div id="img-delete-row">
           <button onClick={handleRemoveClick}>
             <img src="close2.png" alt="" />

@@ -8,13 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const navigate = useNavigate();
-  const { localCart, getCartData , removeFromCart } = useCartContext();
+  const { localCart, getCartData, removeFromCart } = useCartContext();
   const { isAuth, auth } = useLoginStatus();
+
   useEffect(() => {
     if (!isAuth) {
       navigate("/not-loggedin");
     }
-  }, []);
+  }, [isAuth, navigate]);
 
   useEffect(() => {
     const getData = async () => {
@@ -24,9 +25,11 @@ export function Cart() {
     if (auth != undefined) {
       getData();
     }
-  }, [auth]);
+  }, [auth, getCartData]);
 
-  const quantity = 3;
+  // Calcular el precio total
+  const total = localCart.reduce((acc, product) => acc + product.price, 0);
+
   return (
     <>
       <Nav />
@@ -38,9 +41,6 @@ export function Cart() {
 
         <div className="cart-resume-container">
           <div className="cart-rows-container">
-            {/* {cart && auth
-          ? cart.map((product) => <CartRow product={product} />)
-          : null} */}
             {localCart.map((product) => (
               <CartRow product={product} removeFromCar={removeFromCart} />
             ))}
@@ -71,7 +71,7 @@ export function Cart() {
             </div>
             <div className="total-resume-toal-price">
               <div>TOTAL PRICE:</div>
-              <div style={{ color: "green" }}>$$$$</div>
+              <div style={{ color: "green" }}>{`$${total.toFixed(2)}`}</div>
             </div>
             <div className="total-resume-checkout">
               <button>CHECKOUT</button>
