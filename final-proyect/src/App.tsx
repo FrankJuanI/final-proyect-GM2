@@ -30,7 +30,7 @@ function App() {
     <>
       <LoginStatusProvider login={login()}>
         <DataContext.Provider value={data}>
-          <CartContextProvider localCart={{}}>
+          <CartContextProvider>
             <WishListContextProvider>
               <Routes>
                 <Route path="/" element={<Home />} />
