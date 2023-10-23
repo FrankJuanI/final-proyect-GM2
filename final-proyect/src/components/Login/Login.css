@@ -21,8 +21,14 @@
 .first-section {
   content: "";
   display: none;
-  background-color: #2969ee;
+  background-color: #fff;
   padding: 1.3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-section h1{
+  text-align: center;
 }
 
 .second-section {
@@ -87,8 +93,11 @@
 
 @media (min-width: 768px) {
   .first-section {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 50%;
+    
   }
   .login-card {
     display: flex;

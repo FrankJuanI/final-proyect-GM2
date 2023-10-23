@@ -3,6 +3,7 @@ import "./Login.css";
 import { useLoginStatus } from "../../context/LoginStatusContext.tsx";
 import { IncorrectCredenttials } from "../IncorrectCredentials/IncorrectCredentials.tsx";
 import { useEffect } from "react";
+import LoginImage from "/loginCardImage.svg"
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
@@ -31,7 +32,11 @@ export function Login() {
       <div className="login-card-container">
         <div className="login-card">
           {auth != undefined ? <IncorrectCredenttials /> : null}
-          <div className="first-section"></div>
+          <div className="first-section">
+            <h1>Welcome Back!</h1>
+            <h3>The best ecommerce ever</h3>
+            <img src={LoginImage} alt="" />
+          </div>
           <div className="second-section">
             <h2>Sign In</h2>
             <div className="inputs-container">
