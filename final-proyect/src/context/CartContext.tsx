@@ -5,7 +5,6 @@ import {
   useState,
   useEffect,
 } from "react";
-import { LoginStatusContext } from "./LoginStatusContext";
 
 export const CartContext = createContext([]);
 
@@ -15,22 +14,43 @@ export const CartContextProvider = ({ children }) => {
   const [localCart, setLocalCart] = useState([]);
   const [load, setLoad] = useState(false);
 
-  const removeFromCart = (id) => {
-    const updatedCart = localCart.filter((product) => product.id !== id);
-    setLocalCart(updatedCart);
-  };
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      setLocalCart(JSON.parse(cart));
+    }
+  }, []);
 
-  const getCartData = useCallback(
-    (id) => {
-      fetch(`https://dummyjson.com/carts/user/${id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setLocalCart([...localCart, ...data.carts[0].products]);
-          setLoad(!load);
-        });
+  const addToCart = useCallback(
+    (productDetail) => {
+      const updatedLocalCart = [...localCart, productDetail];
+      localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
+      setLocalCart(updatedLocalCart);
     },
     [localCart]
   );
+
+  const deleteFromCart = (productDetail) => {
+    const updatedLocalCart = localCart.filter(
+      (item) => item.id !== productDetail.id
+    );
+    localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
+    setLocalCart(updatedLocalCart);
+  };
+
+  // const removeFromCart = (id) => {
+  //   const updatedCart = localCart.filter((product) => product.id !== id);
+  //   setLocalCart(updatedCart);
+  // };
+
+  // const getCartData = useCallback((id) => {
+  //   fetch(`https://dummyjson.com/carts/user/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setLocalCart([...localCart, ...data.carts[0].products]);
+  //       setLoad(!load);
+  //     });
+  // }, []);
 
   const getCartProductImg = useCallback((id) => {
     fetch(`https://dummyjson.com/product/${id}`)
@@ -40,25 +60,23 @@ export const CartContextProvider = ({ children }) => {
       });
   }, []);
 
-  const addLocalCartProduct = (id) => {
-    fetch(`https://dummyjson.com/product/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setLocalCart([...localCart, data]);
-      });
-  };
+  // const addLocalCartProduct = (id) => {
+  //   fetch(`https://dummyjson.com/product/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setLocalCart([...localCart, data]);
+  //     });
+  // };
 
   return (
     <CartContext.Provider
       value={{
         localCart,
-        setLocalCart,
-        getCartData,
         getCartProductImg,
-        addLocalCartProduct,
-        removeFromCart,
         load,
         setLoad,
+        addToCart,
+        deleteFromCart,
       }}
     >
       {children}

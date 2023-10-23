@@ -11,33 +11,25 @@ interface CardProps {
   discountPercentage: number;
 }
 
-function Card({
-  id,
-  images,
-  title,
-  price,
-  description,
-  discountPercentage,
-}: CardProps) {
+function Card({ productDetail }: CardProps) {
   const navigate = useNavigate();
-  const { addLocalCartProduct } = useCartContext();
+  const { addToCart } = useCartContext();
 
   const handleClick = () => {
-    console.log("pep");
-    addLocalCartProduct(id);
+    addToCart(productDetail);
   };
 
   return (
     <div className="card">
       <div
         className="product"
-        onClick={() => navigate(`/product-detail/${id}`)}
+        onClick={() => navigate(`/product-detail/${productDetail.id}`)}
       >
-        <img src={images[0]} alt="" />
+        <img src={productDetail.images[0]} alt="" />
         <div className="text-container">
-          <h3>{`$${price}`}</h3>
-          <h2>{title}</h2>
-          <p>{description}</p>
+          <h3>{`$${productDetail.price}`}</h3>
+          <h2>{productDetail.title}</h2>
+          <p>{productDetail.description}</p>
         </div>
       </div>
       <div className="buttons">

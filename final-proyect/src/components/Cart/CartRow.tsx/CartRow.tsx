@@ -1,27 +1,35 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCartContext } from "../../../context/CartContext";
 import "../Cart.css";
-export function CartRow({ product,removeFromCar}) {
-  const { getCartProductImg } = useCartContext();
 
+export function CartRow({ product }) {
   const [img, setImg] = useState();
+
+  const { deleteFromCart, localCart } = useCartContext();
+
   const handleRemoveClick = () => {
-    removeFromCar(product.id); 
-  }
-  const [productQuantity,setProductQuantity]=useState(0) 
-  
-  const substractionProductQuantity = ()=>{if(productQuantity===0){
-    setProductQuantity(0)
-  }else{setProductQuantity(productQuantity-1)}}
-  const addProductQuantity = ()=>setProductQuantity(productQuantity+1)
-  
+    deleteFromCart(product);
+  };
+
+  const [productQuantity, setProductQuantity] = useState(0);
+
+  const substractionProductQuantity = () => {
+    if (productQuantity === 0) {
+      setProductQuantity(0);
+    } else {
+      setProductQuantity(productQuantity - 1);
+    }
+  };
+  const addProductQuantity = () => setProductQuantity(productQuantity + 1);
+
   useEffect(() => {
     fetch(`https://dummyjson.com/product/${product.id}`)
       .then((res) => res.json())
       .then((data) => {
         setImg(data.images[0]);
       });
-  }, []);
+  }, [localCart]);
+
   return (
     <div className="product-row">
       <div className="product-description">

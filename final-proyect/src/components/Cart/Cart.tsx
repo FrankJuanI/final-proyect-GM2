@@ -8,25 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const navigate = useNavigate();
-  const { localCart, getCartData, removeFromCart } = useCartContext();
-  const { isAuth, auth } = useLoginStatus();
-
+  const { localCart } = useCartContext();
+  const { isAuth } = useLoginStatus();
 
   useEffect(() => {
     if (isAuth === false) {
       navigate("/not-loggedin");
     }
-  }, [isAuth, navigate]);
-
-  useEffect(() => {
-    const getData = async () => {
-      await getCartData(auth.id);
-    };
-
-    if (auth != undefined) {
-      getData();
-    }
-  }, [auth, getCartData]);
+  }, [isAuth]);
 
   // Calcular el precio total
   const total = localCart.reduce((acc, product) => acc + product.price, 0);
@@ -43,7 +32,7 @@ export function Cart() {
         <div className="cart-resume-container">
           <div className="cart-rows-container">
             {localCart.map((product) => (
-              <CartRow product={product} removeFromCar={removeFromCart} />
+              <CartRow product={product} />
             ))}
           </div>
           <div className="cart-total-container">
