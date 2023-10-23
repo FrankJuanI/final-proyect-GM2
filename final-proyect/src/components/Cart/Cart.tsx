@@ -10,6 +10,7 @@ export function Cart() {
   const navigate = useNavigate();
   const { localCart } = useCartContext();
   const { isAuth } = useLoginStatus();
+  const { totalPrice } = useCartContext();
 
   useEffect(() => {
     if (isAuth === false) {
@@ -64,7 +65,7 @@ export function Cart() {
             </div>
             <div className="total-resume-toal-price">
               <div>TOTAL PRICE:</div>
-              <div style={{ color: "green" }}>{`$${total.toFixed(2)}`}</div>
+              <div style={{ color: "green" }}>{totalPrice}</div>
             </div>
             <div className="total-resume-checkout">
               <button>CHECKOUT</button>
