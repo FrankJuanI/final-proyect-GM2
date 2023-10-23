@@ -14,6 +14,7 @@ import { YouAreNotLoggedIn } from "./components/YouAreNotLoggedIn/YouAreNotLogge
 import { Metrics } from "./components/Metrics/Metrics.tsx";
 import { CartContextProvider } from "./context/CartContext.tsx";
 import { Home } from "./components/Home/Home.tsx";
+import { UserProfile } from "./components/UserProfile/UserProfile.tsx";
 import { WishListContextProvider } from "./context/WishListContext.tsx";
 function App() {
   const { data } = useFetch();
@@ -24,9 +25,6 @@ function App() {
       return session;
     }
   };
-
-  
-
 
   return (
     <>
@@ -42,6 +40,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
                 <Route path="/metrics" element={<Metrics />} />
+                <Route path="/profile" element={<UserProfile/>} />
               </Routes>
             </WishListContextProvider>
           </CartContextProvider>
