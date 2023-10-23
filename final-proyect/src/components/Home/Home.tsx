@@ -9,9 +9,7 @@ export const Home = () => {
   const Imgs = useFetchImg();
   const { comments, about } = useHomeData();
 
-  useEffect(() => {
-    console.log(comments, about);
-  }, [comments?.length]);
+  useEffect(() => {}, [comments?.length]);
 
   const BannerStyle = {
     backgroundImage: `url(${Imgs[0]})`,

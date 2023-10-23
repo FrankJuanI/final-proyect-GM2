@@ -30,7 +30,6 @@ export const useHomeData = () => {
     fetch("https://dummyjson.com/comments?limit=14")
       .then((res) => res.json())
       .then((allcomments) => {
-        console.log(allcomments);
         setComments(allcomments.comments);
       });
   }, []);

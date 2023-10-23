@@ -9,7 +9,6 @@ export function useGetProductDetail(id){
         .then(res => res.json())
         .then((res) => {
             setProductDetail(res)
-            console.log(res)
         });
 
     },[])

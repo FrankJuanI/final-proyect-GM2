@@ -19,7 +19,6 @@ interface Product {
 
 export function Products() {
   const resdata = UseDataContext();
-  console.log("data: ", resdata);
   return (
     <div className="products">
       {resdata &&

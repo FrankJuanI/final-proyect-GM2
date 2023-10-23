@@ -2,19 +2,28 @@ import { Nav } from "../Nav/Nav";
 import "./Login.css";
 import { useLoginStatus } from "../../context/LoginStatusContext.tsx";
 import { IncorrectCredenttials } from "../IncorrectCredentials/IncorrectCredentials.tsx";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const { auth, getUserLogin } = useLoginStatus();
-
+  const { auth, getUserLogin, isAuth } = useLoginStatus();
+  const navigate = useNavigate()
+  
   let emailInput = "";
   let passwordInput = "";
-
+  
   const handleLoginButton = async (
     emailInput: string,
     passwordInput: string
   ) => {
     await getUserLogin(emailInput, passwordInput);
   };
+
+  useEffect(()=>{
+    if (isAuth) {
+      navigate("/");
+    }
+  },[])
 
   return (
     <>
@@ -65,7 +74,6 @@ export function Login() {
           </div>
         </div>
       </div>
-      {auth === "Invalid credenttials" ? <IncorrectCredenttials /> : null}
     </>
   );
 }
