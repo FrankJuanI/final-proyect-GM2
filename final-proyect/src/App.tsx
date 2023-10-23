@@ -39,7 +39,6 @@ function App() {
                 <Route path="/product-detail/:id" element={<ProductsDetails />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
-                <Route path="/metrics" element={<Metrics />} />
                 <Route path="/profile" element={<UserProfile/>} />
               </Routes>
             </WishListContextProvider>

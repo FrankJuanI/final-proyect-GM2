@@ -3,6 +3,7 @@ import "./Login.css";
 import { useLoginStatus } from "../../context/LoginStatusContext.tsx";
 import { IncorrectCredenttials } from "../IncorrectCredentials/IncorrectCredentials.tsx";
 import { useEffect } from "react";
+import LoginImage from "/loginCardImage.svg"
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
@@ -19,11 +20,11 @@ export function Login() {
     await getUserLogin(emailInput, passwordInput);
   };
 
-  useEffect(()=>{
-    if (isAuth) {
-      navigate("/");
-    }
-  },[])
+
+  if (isAuth) {
+    navigate("/");
+  }
+
 
   return (
     <>
@@ -31,7 +32,11 @@ export function Login() {
       <div className="login-card-container">
         <div className="login-card">
           {auth != undefined ? <IncorrectCredenttials /> : null}
-          <div className="first-section"></div>
+          <div className="first-section">
+            <h1>Welcome Back!</h1>
+            <h3>The best ecommerce ever</h3>
+            <img src={LoginImage} alt="" />
+          </div>
           <div className="second-section">
             <h2>Sign In</h2>
             <div className="inputs-container">
@@ -41,7 +46,6 @@ export function Login() {
                   type="text"
                   onChange={(event) => {
                     emailInput = event.target.value;
-                    console.log(emailInput);
                   }}
                   defaultValue={"kminchelle"}
                 />
@@ -52,7 +56,6 @@ export function Login() {
                   type="text"
                   onChange={(event) => {
                     passwordInput = event.target.value;
-                    console.log(passwordInput);
                   }}
                   defaultValue="0lelplR"
                 />
@@ -64,11 +67,6 @@ export function Login() {
                 onClick={() => handleLoginButton(emailInput, passwordInput)}
               >
                 Sign In
-              </button>
-              <p>Or</p>
-              <button id="google-button">
-                <img src="search.png" alt="" />
-                Sign in with Google
               </button>
             </div>
           </div>

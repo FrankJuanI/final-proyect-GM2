@@ -8,23 +8,29 @@ import { useParams } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { useWishListContext } from "../../context/WishListContext.tsx";
 import { useState } from "react";
-import { Wishlist } from "../Nav/WishList/Wishlist.tsx";
 
 export function ProductsDetails() {
 
-  const {addToWishlist} = useWishListContext()
+  const {addToWishlist, deleteFromWishlist} = useWishListContext()
 
   const {id} = useParams()
 
   const productDetail = useGetProductDetail(id)
 
+  const [isWished, setIsWished] = useState<boolean>(false)
 
   const calculateDiscount = (price, discount) => {
     return price - (price * discount / 100)
   }
 
   const handleClick = () => {
-    addToWishlist(productDetail)
+    if (isWished){
+      deleteFromWishlist(productDetail)
+      setIsWished(!isWished)
+    } else {
+      addToWishlist(productDetail)
+      setIsWished(!isWished)
+    }
   }
 
 
@@ -75,7 +81,7 @@ export function ProductsDetails() {
                   </div>
                   <div className="wish-list">
                     <button className="action"  onClick={()=> handleClick()}>
-                      <img src={heart} alt="heart"/>
+                      <img src={isWished ? `/redheart.png` : heart} alt="heart"/>
                       Wish List
                     </button>
                   </div>
