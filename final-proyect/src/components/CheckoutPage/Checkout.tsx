@@ -1,6 +1,7 @@
 import "./Checkout.css";
 import { useFetchImg } from "../../hooks/useHomeData";
 import cardIcon from "/card.svg";
+import { Nav } from "../Nav/Nav";
 export const CheckoutPage = () => {
   const Imgs = useFetchImg();
   const BannerStyle = {
@@ -9,6 +10,8 @@ export const CheckoutPage = () => {
     backgroundPosition: "center",
   };
   return (
+    <>
+    <Nav/>
     <div className="banner-container" style={BannerStyle}>
       <div className="banner-content">
         {Imgs != undefined ? (
@@ -50,5 +53,6 @@ export const CheckoutPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
