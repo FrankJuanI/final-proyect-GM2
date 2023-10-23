@@ -2,6 +2,7 @@ import { useLoginStatus } from "../../context/LoginStatusContext";
 import { LoggedUserNav } from "./LoggedUser/LoggedUserNav";
 import { NotLoggedUserNav } from "./NotLoggedUser/NotLoggedUserNav";
 import IconMenu from "/NavResponsiveIcon.svg";
+import gm2Logo from "/gm2-logo.webp";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +17,7 @@ export function Nav() {
     <nav>
       <div className="about-info">
         <button className="box-logo" onClick={() => navigate("/")}>
-          <img className="logo" src="gm2-logo.webp" alt="logo" />
+          <img className="logo" src={gm2Logo} alt="logo" />
         </button>
         <p className="nav-title">The best ecommerce ever</p>
         <button className={`button-menu`} onClick={toggleMenu}>
