@@ -70,11 +70,6 @@ export function Login() {
               >
                 Sign In
               </button>
-              <p>Or</p>
-              <button id="google-button">
-                <img src="search.png" alt="" />
-                Sign in with Google
-              </button>
             </div>
           </div>
         </div>
