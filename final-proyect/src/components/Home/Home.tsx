@@ -20,17 +20,18 @@ export const Home = () => {
   return (
     <>
       <Nav />
-      <div className="latest-products">
-        <h2 className="title">Latest Product</h2>
-        <div className="banner-img" style={BannerStyle}>
-          <div className="banner">
-            {Imgs != undefined ? <img src={`${Imgs[0]}`} alt="" /> : null}
+      <div className="home-content">
+        <div className="about">
+          <p className="title">Why choose us?</p>
+          {about != null ? <h2 className="about-text">{about}</h2> : null}
+        </div>
+        <div className="latest-products">
+          <div className="banner-img" style={BannerStyle}>
+            <div className="banner">
+              {Imgs != undefined ? <img src={`${Imgs[0]}`} alt="" /> : null}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="about">
-        <p className="title">About</p>
-        {about != null ? <h2 className="about-text">{about}</h2> : null}
       </div>
       <div className="comments">
         <p className="title">Comments</p>

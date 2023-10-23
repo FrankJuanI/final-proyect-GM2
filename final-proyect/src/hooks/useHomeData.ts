@@ -24,7 +24,7 @@ export const useFetchImg = () => {
 export const useHomeData = () => {
   const [comments, setComments] = useState<comment[]>();
   const about =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi fugit recusandae minima? Laudantium quaerat veritatis, magnam doloremque nobis officia assumenda possimus explicabo tenetur at consequatur a ex eum hic nihil.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi fugit recusandae minima? Laudantium quaerat veritatis, magnam doloremque nobis officia assumenda possimus explicabo tenetur at consequatur a ex eum hic nihil.";
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi fugit recusandae minima? Laudantium quaerat veritatis, magnam doloremque nobis officia assumenda possimus explicabo tenetur at consequatur a ex eum hic nihil.Lorem ipsum dolor sit amet consectetur adipisicing elit.";
 
   useEffect(() => {
     fetch("https://dummyjson.com/comments?limit=14")
