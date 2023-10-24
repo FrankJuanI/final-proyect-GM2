@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +37,9 @@ function Card({ productDetail }: CardProps) {
         <button className="add-to-cart-button" onClick={handleClick}>
           Add to cart
         </button>
-        <Link className="buy-now-button" to={`/checkout/${id}`}>Buy Now</Link>
+        <Link className="buy-now-button" to={`/checkout/${productDetail.id}`}>
+          Buy Now
+        </Link>
         <p>Read Reviews</p>
       </div>
     </div>
