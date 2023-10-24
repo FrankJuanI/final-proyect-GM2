@@ -74,6 +74,12 @@
 .buy-now-button {
   background-color: transparent;
   border: 1px solid #333333;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  align-items: center;
+  color: #433f3f;
 }
 
 .add-to-cart-button {

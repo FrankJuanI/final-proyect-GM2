@@ -1,7 +1,8 @@
-import { redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
+
 interface CardProps {
   id: number;
   images: string[];
@@ -44,7 +45,7 @@ function Card({
         <button className="add-to-cart-button" onClick={handleClick}>
           Add to cart
         </button>
-        <button className="buy-now-button">Buy now</button>
+        <Link className="buy-now-button" to={`/checkout/${id}`}>Buy Now</Link>
         <p>Read Reviews</p>
       </div>
     </div>
