@@ -1,14 +1,29 @@
-import { Nav } from "../Nav/Nav.tsx";
+import React, { useState } from "react";
+import { Filters } from "../Filters/Filters";
+import { Products } from "../Products/Products";
+import { Nav } from "../Nav/Nav";
 import "./Shop.css";
-import { Products } from "../Products/Products.tsx";
-import { SideBar } from "../SideBar/SideBar.tsx";
 
 export function Shop() {
+  const [filterCriteria, setFilterCriteria] = useState({
+    minPrice: "",
+    maxPrice: "",
+    title: "",
+    brand: "",
+    description: "",
+    category: "smartphones",
+  });
+
+  const handleFilterChange = (newCriteria) => {
+    setFilterCriteria(newCriteria);
+  };
+
   return (
     <>
       <Nav />
-      <div>
-        <Products />
+      <div className="all-content">
+        <Filters onFilterChange={handleFilterChange} />
+        <Products filterCriteria={filterCriteria} />
       </div>
     </>
   );

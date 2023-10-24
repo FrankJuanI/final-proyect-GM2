@@ -13,6 +13,7 @@ import { Cart } from "./components/Cart/Cart.tsx";
 import { YouAreNotLoggedIn } from "./components/YouAreNotLoggedIn/YouAreNotLoggedIn.tsx";
 import { CartContextProvider } from "./context/CartContext.tsx";
 import { Home } from "./components/Home/Home.tsx";
+import { CheckoutPage } from "./components/CheckoutPage/Checkout.tsx";
 import { UserProfile } from "./components/UserProfile/UserProfile.tsx";
 import { WishListContextProvider } from "./context/WishListContext.tsx";
 
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
                 <Route path="/profile" element={<UserProfile />} />
+                <Route path="/checkout/:productId" element={<CheckoutPage/>} />
               </Routes>
             </WishListContextProvider>
           </CartContextProvider>

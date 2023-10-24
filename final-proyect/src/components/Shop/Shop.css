@@ -1,0 +1,11 @@
+.all-content {
+  display: flex;
+  width: 100vw;
+}
+@media only screen and (max-width: 575px) {
+  .all-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } 
+}
