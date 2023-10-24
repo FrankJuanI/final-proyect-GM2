@@ -58,12 +58,7 @@ export function Products({ filterCriteria }) {
         return (
           <Card
             key={product.id}
-            id={product.id}
-            title={product.title}
-            images={product.images}
-            description={product.description}
-            price={product.price}
-            discountPercentage={product.discountPercentage}
+            productDetail={product}
           />
         );
       })}

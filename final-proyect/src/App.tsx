@@ -16,6 +16,7 @@ import { Home } from "./components/Home/Home.tsx";
 import { CheckoutPage } from "./components/CheckoutPage/Checkout.tsx";
 import { UserProfile } from "./components/UserProfile/UserProfile.tsx";
 import { WishListContextProvider } from "./context/WishListContext.tsx";
+
 function App() {
   const { data } = useFetch();
 
@@ -43,7 +44,6 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
                 <Route path="/profile" element={<UserProfile />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/checkout/:productId" element={<CheckoutPage/>} />
               </Routes>
             </WishListContextProvider>

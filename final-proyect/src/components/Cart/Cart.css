@@ -25,7 +25,6 @@
   margin-top: 2rem;
   display: flex;
   gap: 2rem;
-
 }
 
 .cart-resume-header {
@@ -46,7 +45,7 @@
   width: 40%;
 }
 
-.cart-rows-container{
+.cart-rows-container {
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -54,17 +53,18 @@
 }
 
 .product-description {
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px auto;
   align-items: center;
   gap: 1.3rem;
 }
-.product-buy-details{
+.product-buy-details {
   display: contents;
 }
 
 #img-delete-row {
   width: auto;
-  left: 0;
+  margin: 0 auto;
 }
 
 #img-delete-row button {
@@ -80,7 +80,7 @@
   gap: 0.5rem;
 }
 
-.buttons-quantity button{
+.buttons-quantity button {
   border: none;
   background-color: #f1f1f1;
   height: auto;
@@ -91,27 +91,26 @@
   width: 40px;
 }
 
-.buttons-quantity button:hover{
+.buttons-quantity button:hover {
   background-color: #e7e7e7;
 }
 
 .product-row {
   display: grid;
-  justify-content: space-around;
   height: 6rem;
   align-items: center;
-  grid-template-columns: 40% 10% 15% 15% 10%;
+  grid-template-columns: auto 80px 100px 130px;
   border-bottom: 1px solid #eee;
 }
 
-.cart-total-container{
+.cart-total-container {
   padding: 1.5em;
   width: 30%;
   box-sizing: border-box;
   height: auto;
 }
 
-.total-resume-header{
+.total-resume-header {
   width: 100%;
   border-bottom: 1px solid #eee;
   position: relative;
@@ -119,51 +118,50 @@
   margin-bottom: 1em;
 }
 
-.total-resume-header h2{
+.total-resume-header h2 {
   font-size: 2.3em;
   margin-left: 0.3em;
   margin-bottom: 0.6em;
 }
 
-.total-resume-items-count{
+.total-resume-items-count {
   padding: 1em 0;
   display: flex;
   justify-content: space-between;
 }
 
-.total-resume-items-count p{
+.total-resume-items-count p {
   font-size: 1.3rem;
 }
 
-.total-resume-shipping{
+.total-resume-shipping {
   font-size: 1.4rem;
   padding: 1em 0;
   display: flex;
   flex-direction: column;
-  gap:0.3rem
+  gap: 0.3rem;
 }
 
-#select-shipping{
+#select-shipping {
   height: 40px;
   width: 60%;
   background-color: #e6e6e6;
   font-size: 1rem;
 }
 
-.total-resume-shipping option{
+.total-resume-shipping option {
   font-size: 1rem;
 }
 
-
-.total-resume-code-container{
+.total-resume-code-container {
   font-size: 1.4rem;
   padding: 1em 0;
   display: flex;
   flex-direction: column;
-  gap:0.3rem
+  gap: 0.3rem;
 }
 
-.total-resume-code-container input{
+.total-resume-code-container input {
   width: 100%;
   height: 40px;
   border: none;
@@ -172,17 +170,17 @@
   box-sizing: border-box;
 }
 
-.total-resume-toal-price{
+.total-resume-toal-price {
   display: flex;
   justify-content: space-between;
   font-size: 1.3rem;
 }
 
-.total-resume-checkout{
+.total-resume-checkout {
   padding-top: 1.8em;
 }
 
-.total-resume-checkout button{
+.total-resume-checkout button {
   height: 45px;
   border: none;
   background-color: #1e1e1e;
@@ -192,30 +190,28 @@
   margin: 0 auto;
 }
 
-
 @media screen and (max-width: 767px) {
-  .cart-resume-container{
+  .cart-resume-container {
     flex-direction: column;
     width: 100vw;
   }
-  .cart-rows-container{
+  .cart-rows-container {
     width: 90vw;
   }
-  .product-row{
+  .product-row {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 90vw;
   }
 
-  .product-buy-details{
+  .product-buy-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
   }
-  .cart-total-container{
+  .cart-total-container {
     width: 100%;
   }
 }
-

@@ -1,27 +1,34 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCartContext } from "../../../context/CartContext";
 import "../Cart.css";
-export function CartRow({ product,removeFromCar}) {
-  const { getCartProductImg } = useCartContext();
 
+export function CartRow({ product }) {
   const [img, setImg] = useState();
+  const { deleteFromCart, localCart, substractionProductQuantity, addToCart } =
+    useCartContext();
+
   const handleRemoveClick = () => {
-    removeFromCar(product.id); 
-  }
-  const [productQuantity,setProductQuantity]=useState(0) 
-  
-  const substractionProductQuantity = ()=>{if(productQuantity===0){
-    setProductQuantity(0)
-  }else{setProductQuantity(productQuantity-1)}}
-  const addProductQuantity = ()=>setProductQuantity(productQuantity+1)
-  
+    deleteFromCart(product);
+  };
+
+  // const substractionProductQuantity = () => {
+  //   if (productQuantity === 0) {
+  //     setProductQuantity(0);
+  //   } else {
+  //     setProductQuantity(productQuantity - 1);
+  //   }
+  // };
+
+  // const addProductQuantity = () => setProductQuantity(productQuantity + 1);
+
   useEffect(() => {
     fetch(`https://dummyjson.com/product/${product.id}`)
       .then((res) => res.json())
       .then((data) => {
         setImg(data.images[0]);
       });
-  }, []);
+  }, [localCart]);
+
   return (
     <div className="product-row">
       <div className="product-description">
@@ -31,11 +38,13 @@ export function CartRow({ product,removeFromCar}) {
       <div className="product-buy-details">
         <h4>$ {product.price}</h4>
         <div className="buttons-quantity">
-          <button onClick={substractionProductQuantity}>-</button>
-          <p>{productQuantity}</p>
-          <button onClick={addProductQuantity}>+</button>
+          <button onClick={() => substractionProductQuantity(product.id)}>
+            -
+          </button>
+          <p>{product.quantity}</p>
+          <button onClick={() => addToCart(product)}>+</button>
         </div>
-        <h4>$ {product.price * productQuantity}</h4>
+        {/* <h4>$ {product.price * productQuantity}</h4> */}
         <div id="img-delete-row">
           <button onClick={handleRemoveClick}>
             <img src="close2.png" alt="" />

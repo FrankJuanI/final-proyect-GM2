@@ -10,38 +10,35 @@ import { useWishListContext } from "../../context/WishListContext.tsx";
 import { useState } from "react";
 
 export function ProductsDetails() {
+  const { addToWishlist, deleteFromWishlist } = useWishListContext();
 
-  const {addToWishlist, deleteFromWishlist} = useWishListContext()
+  const { id } = useParams();
 
-  const {id} = useParams()
+  const productDetail = useGetProductDetail(id);
 
-  const productDetail = useGetProductDetail(id)
-
-  const [isWished, setIsWished] = useState<boolean>(false)
+  const [isWished, setIsWished] = useState<boolean>(false);
 
   const calculateDiscount = (price, discount) => {
-    return price - (price * discount / 100)
-  }
+    return price - (price * discount) / 100;
+  };
 
   const handleClick = () => {
-    if (isWished){
-      deleteFromWishlist(productDetail)
-      setIsWished(!isWished)
+    if (isWished) {
+      deleteFromWishlist(productDetail);
+      setIsWished(!isWished);
     } else {
-      addToWishlist(productDetail)
-      setIsWished(!isWished)
+      addToWishlist(productDetail);
+      setIsWished(!isWished);
     }
-  }
-
+  };
 
   return (
-
     <>
       <Nav />
       <div className="content">
-        {
-          productDetail && productDetail.images != undefined ? <Carousel pictures={productDetail.images} /> : null
-        }
+        {productDetail && productDetail.images != undefined ? (
+          <Carousel pictures={productDetail.images} />
+        ) : null}
         <div className="product-info">
           <div className="title-brand">
             <h1>{productDetail && productDetail.title}</h1>
@@ -49,10 +46,19 @@ export function ProductsDetails() {
           </div>
           <div className="price">
             <p className="old-price">${productDetail && productDetail.price}</p>
-            <p className="new-price">${productDetail && calculateDiscount(productDetail.price, productDetail.discountPercentage)}</p> {/* se tiene que calcular */}
+            <p className="new-price">
+              $
+              {productDetail &&
+                calculateDiscount(
+                  productDetail.price,
+                  productDetail.discountPercentage
+                )}
+            </p>
           </div>
           <div className="stock">
-            <p className="stock-title">{productDetail && productDetail.stock} item left</p>
+            <p className="stock-title">
+              {productDetail && productDetail.stock} item left
+            </p>
             <div className="stock-bar">
               <div className="progress-stock"></div>
             </div>
@@ -67,8 +73,10 @@ export function ProductsDetails() {
             <div className="buy">
               <div className="select-quantity">
                 <p className="quantity-title">Quantity</p>
-                <IncrementDecrement/>
-                <p className="maximum-purchase">Maximum Purchase: {productDetail && productDetail.stock}</p>
+                <IncrementDecrement />
+                <p className="maximum-purchase">
+                  Maximum Purchase: {productDetail && productDetail.stock}
+                </p>
               </div>
               <div className="buttons-actions">
                 <Link className="buy-now-button" to={`/checkout/${id}`}>Buy Now</Link>
@@ -80,8 +88,11 @@ export function ProductsDetails() {
                     </button>
                   </div>
                   <div className="wish-list">
-                    <button className="action"  onClick={()=> handleClick()}>
-                      <img src={isWished ? `/redheart.png` : heart} alt="heart"/>
+                    <button className="action" onClick={() => handleClick()}>
+                      <img
+                        src={isWished ? `/redheart.png` : heart}
+                        alt="heart"
+                      />
                       Wish List
                     </button>
                   </div>
@@ -92,6 +103,5 @@ export function ProductsDetails() {
         </div>
       </div>
     </>
-
   );
 }
