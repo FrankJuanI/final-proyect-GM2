@@ -42,6 +42,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [localCart, setLocalCart] = useState<CartProduct[]>([]);
   const [load, setLoad] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState<number>(0);
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
@@ -49,6 +50,15 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       setLocalCart(JSON.parse(cart));
     }
   }, []);
+
+  useEffect(() => {
+    let quantity = 0;
+    for (const item of localCart) {
+      quantity = quantity + item.quantity;
+      console.log("items quantity: ", quantity);
+    }
+    setTotalItems(quantity);
+  }, [localCart]);
 
   const addToCart = useCallback(
     (productDetail: Product) => {
@@ -97,7 +107,6 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     });
     localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
     setLocalCart(updatedLocalCart);
-    2;
   };
 
   const deleteFromCart = (productDetail: Product) => {
@@ -127,6 +136,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         deleteFromCart,
         substractionProductQuantity,
         totalPrice,
+        totalItems,
       }}
     >
       {children}
