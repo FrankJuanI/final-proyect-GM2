@@ -44,6 +44,7 @@ function App() {
                 <Route path="/not-loggedin" element={<YouAreNotLoggedIn />} />
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/checkout/:productId" element={<CheckoutPage/>} />
               </Routes>
             </WishListContextProvider>
           </CartContextProvider>
