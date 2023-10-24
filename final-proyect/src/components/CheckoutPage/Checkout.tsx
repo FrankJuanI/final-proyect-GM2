@@ -3,17 +3,17 @@ import cardIcon from "/card.svg";
 import { Nav } from "../Nav/Nav";
 import { useParams } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
-import { useFetchImg } from "../../hooks/useHomeData";
 export const CheckoutPage = () => {
   const { productId } = useParams();
 
   const productDetail = useGetProductDetail(productId);
-  const Imgs = useFetchImg();
-  const BannerStyle = productDetail ? {
-    backgroundImage: `url(${productDetail.images[0]})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  } : {};
+  const BannerStyle = productDetail
+    ? {
+        backgroundImage: `url(${productDetail.images[0]})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }
+    : {};
   return (
     <>
       <Nav />
