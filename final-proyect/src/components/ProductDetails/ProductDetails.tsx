@@ -4,7 +4,7 @@ import "./ProductDetail.css";
 import { IncrementDecrement } from "../IncrementDecrement/IncrementDecrement";
 import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { useWishListContext } from "../../context/WishListContext.tsx";
 import { useState } from "react";
@@ -71,7 +71,7 @@ export function ProductsDetails() {
                 <p className="maximum-purchase">Maximum Purchase: {productDetail && productDetail.stock}</p>
               </div>
               <div className="buttons-actions">
-                <button className="buy-now">Buy Now</button>
+                <Link className="buy-now-button" to={`/checkout/${id}`}>Buy Now</Link>
                 <div className="add-to">
                   <div className="cart">
                     <button className="action">
