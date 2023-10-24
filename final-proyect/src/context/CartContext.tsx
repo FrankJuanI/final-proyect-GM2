@@ -69,7 +69,10 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
 
   const updateCart = (productDetail: Product) => {
-    const updatedLocalCart = localCart.map((product) => product.id === productDetail.id ? { ...product, quantity: product.quantity + 1 } : product);
+    const updatedLocalCart = localCart.map((product) => 
+    product.id === productDetail.id ? 
+    { ...product, quantity: product.quantity + 1 } 
+    : product);
     return updatedLocalCart
   }
   
@@ -84,7 +87,9 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       const productInCart = localCart.find(
         (product) => product.id === productDetail.id
       );
-      const updatedLocalCart = productInCart ? updateCart(productDetail) : addProductToCart(productDetail);
+      const updatedLocalCart = productInCart ? 
+      updateCart(productDetail) 
+      : addProductToCart(productDetail);
 
       localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
       setLocalCart(updatedLocalCart);
@@ -94,10 +99,8 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
   const substractionProductQuantity = (id: number) => {
     const updatedLocalCart = localCart.map((product) => {
-      if (product.id === id) {
-        if (product.quantity > 1) {
+      if (product.id === id && product.quantity > 1) {
           return { ...product, quantity: product.quantity - 1 };
-        }
       }
       return product;
     });
