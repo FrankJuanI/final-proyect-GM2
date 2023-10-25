@@ -7,7 +7,9 @@ import cart from "../../assets/cart.svg";
 import { useParams, Link } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { useWishListContext } from "../../context/WishListContext.tsx";
+import { toast } from "sonner";
 import { useState } from "react";
+import heartfill from "/redheart.png";
 
 export function ProductsDetails() {
   const { addToWishlist, deleteFromWishlist } = useWishListContext();
@@ -18,10 +20,15 @@ export function ProductsDetails() {
 
   const [isWished, setIsWished] = useState<boolean>(false);
 
-  const calculateDiscount = (price, discount) => {
+  const calculateDiscount = (price: number, discount: number) => {
     return price - (price * discount) / 100;
   };
-
+  const WishlistActions = () => {
+    handleClick();
+    {
+      !isWished ? toast.success("Add to wish list") : null;
+    }
+  };
   const handleClick = () => {
     if (isWished) {
       deleteFromWishlist(productDetail);
@@ -35,6 +42,7 @@ export function ProductsDetails() {
   return (
     <>
       <Nav />
+
       <div className="content">
         {productDetail && productDetail.images != undefined ? (
           <Carousel pictures={productDetail.images} />
@@ -73,26 +81,36 @@ export function ProductsDetails() {
             <div className="buy">
               <div className="select-quantity">
                 <p className="quantity-title">Quantity</p>
-                <IncrementDecrement />
+                {productDetail ? (
+                  <IncrementDecrement productStock={productDetail.stock} />
+                ) : (
+                  "load.."
+                )}
                 <p className="maximum-purchase">
                   Maximum Purchase: {productDetail && productDetail.stock}
                 </p>
               </div>
               <div className="buttons-actions">
-                <Link className="buy-now-button" to={`/checkout/${id}`}>Buy Now</Link>
+                <Link className="buy-now-button" to={`/checkout/${id}`}>
+                  Buy Now
+                </Link>
                 <div className="add-to">
                   <div className="cart">
-                    <button className="action">
+                    <button
+                      className="action"
+                      onClick={() => {
+                        {
+                          toast.success("Add to cart");
+                        }
+                      }}
+                    >
                       <img src={cart} alt="cart" />
                       Add to Cart
                     </button>
                   </div>
                   <div className="wish-list">
-                    <button className="action" onClick={() => handleClick()}>
-                      <img
-                        src={isWished ? `/redheart.png` : heart}
-                        alt="heart"
-                      />
+                    <button className="action" onClick={WishlistActions}>
+                      <img src={isWished ? heartfill : heart} alt="heart" />
                       Wish List
                     </button>
                   </div>

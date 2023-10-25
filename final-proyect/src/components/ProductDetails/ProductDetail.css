@@ -6,6 +6,7 @@
   height: calc(100vh-4rem);
   gap: 10rem;
   padding: 20px 30px;
+  background-color: #f5f5f5;
 }
 
 .product-info {
@@ -39,13 +40,11 @@
   font-style: normal;
   font-weight: 400;
   line-height: 36px;
-  /* 150% */
   text-decoration-line: line-through;
 }
 
 .price .new-price {
   color: #f12b2c;
-  /* font-family: 'Hind Siliguri'; */
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -58,7 +57,7 @@
 }
 
 .stock .stock-title {
-  font-size: 1vw;
+  font-size: 1rem;
   color: var(--Gray-1, #333);
   font-style: normal;
   font-weight: bold;
@@ -102,7 +101,6 @@
   font-style: normal;
   font-weight: 900;
   line-height: 28px;
-  /* 155.556% */
   letter-spacing: 0.18px;
   text-transform: capitalize;
 }
@@ -133,7 +131,6 @@
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
-  /* 155.556% */
   letter-spacing: 0.18px;
 }
 
@@ -143,7 +140,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-  /* 171.429% */
   letter-spacing: 0.14px;
 }
 
@@ -181,15 +177,19 @@
 }
 
 @media screen and (max-width: 768px) {
+  .product-info {
+    width: 90%;
+  }
+
   .content {
-    flex-direction: column; /* Cambia a diseño de columna */
-    align-items: center; /* Centra los elementos */
+    flex-direction: column;
+    align-items: center;
     gap: 2rem;
     padding: 10px 15px;
   }
 
   .price {
-    flex-direction: column; /* Cambia a diseño de columna */
+    flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
   }
@@ -208,7 +208,7 @@
   }
 
   .price {
-    flex-direction: column; /* Cambia a diseño de columna */
+    flex-direction: column;
     align-items: flex-start;
   }
 }
