@@ -67,29 +67,42 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     setTotalPrice(price);
   }, [localCart]);
 
-
   const updateCart = (productDetail: Product) => {
-    const updatedLocalCart = localCart.map((product) => 
-    product.id === productDetail.id ? 
-    { ...product, quantity: product.quantity + 1 } 
-    : product);
-    return updatedLocalCart
-  }
-  
-  const addProductToCart = (productDetail: Product) =>{
-    const { id, title, price, images: [image],} = productDetail;
-    const updatedLocalCart = [...localCart, { id, title, price, image, quantity: 1 }, ]
-    return updatedLocalCart
-  }
+    const updatedLocalCart = localCart.map((product) =>
+      product.id === productDetail.id
+        ? { ...product, quantity: product.quantity + 1 }
+        : product
+    );
+    return updatedLocalCart;
+  };
+
+  const addProductToCart = (productDetail: Product) => {
+    const {
+      id,
+      title,
+      price,
+      images: [image],
+    } = productDetail;
+    const updatedLocalCart = [
+      ...localCart,
+      { id, title, price, image, quantity: 1 },
+    ];
+    return updatedLocalCart;
+  };
+
+  const ProductInCart = (productDetail: Product) => {
+    const isProductInCart = localCart.find(
+      (product) => product.id === productDetail.id
+    );
+    return isProductInCart;
+  };
 
   const addToCart = useCallback(
     (productDetail: Product) => {
-      const productInCart = localCart.find(
-        (product) => product.id === productDetail.id
-      );
-      const updatedLocalCart = productInCart ? 
-      updateCart(productDetail) 
-      : addProductToCart(productDetail);
+      const productInCart = ProductInCart(productDetail);
+      const updatedLocalCart = productInCart
+        ? updateCart(productDetail)
+        : addProductToCart(productDetail);
 
       localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
       setLocalCart(updatedLocalCart);
@@ -100,7 +113,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const substractionProductQuantity = (id: number) => {
     const updatedLocalCart = localCart.map((product) => {
       if (product.id === id && product.quantity > 1) {
-          return { ...product, quantity: product.quantity - 1 };
+        return { ...product, quantity: product.quantity - 1 };
       }
       return product;
     });
@@ -136,6 +149,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         substractionProductQuantity,
         totalPrice,
         totalItems,
+        ProductInCart,
       }}
     >
       {children}
