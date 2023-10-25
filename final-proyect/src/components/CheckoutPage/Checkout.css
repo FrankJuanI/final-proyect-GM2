@@ -10,7 +10,7 @@
   border-radius: 10px;
 }
 
-.banner-background::before {
+.banner-container::before {
   content: "";
   position: absolute;
   top: 0;
@@ -121,33 +121,33 @@
 }
 
 @media (max-width: 768px) {
-    .buy-product-info{
-        border-bottom: none;
-    }
-    .banner-container {
-      height: auto; 
-      border-radius: 0;
-    }
-  
-    .banner-content {
-      flex-direction: column; 
-      width: 100%;
-    }
-  
-    .banner-image {
-      width: 100%; 
-    }
-  
-    .info-container {
-      width: 100%; 
-    }
-  
-    .important-card-info {
-      flex-direction: column;
-    }
-  
-    .specific-data {
-      width: 100%; 
-    }
+  .buy-product-info {
+    border-bottom: none;
   }
-  
+
+  .banner-container {
+    height: auto;
+    border-radius: 0;
+  }
+
+  .banner-content {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .banner-image {
+    width: 100%;
+  }
+
+  .info-container {
+    width: 100%;
+  }
+
+  .important-card-info {
+    flex-direction: column;
+  }
+
+  .specific-data {
+    width: 100%;
+  }
+}
