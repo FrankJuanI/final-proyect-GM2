@@ -10,10 +10,8 @@ import { useWishListContext } from "../../context/WishListContext.tsx";
 import { toast } from "sonner";
 import { useState } from "react";
 import heartfill from "/redheart.png";
-
 export function ProductsDetails() {
   const { addToWishlist, deleteFromWishlist } = useWishListContext();
-
   const { id } = useParams();
 
   const productDetail = useGetProductDetail(id);
@@ -44,7 +42,9 @@ export function ProductsDetails() {
       <Nav />
 
       <div className="content">
-        {productDetail && productDetail.images != undefined ? (
+        {productDetail &&
+        productDetail.images &&
+        productDetail.images.length !== undefined ? (
           <Carousel pictures={productDetail.images} />
         ) : null}
         <div className="product-info">
@@ -99,9 +99,7 @@ export function ProductsDetails() {
                     <button
                       className="action"
                       onClick={() => {
-                        {
-                          toast.success("Add to cart");
-                        }
+                        toast.success("Add to cart");
                       }}
                     >
                       <img src={cart} alt="cart" />
