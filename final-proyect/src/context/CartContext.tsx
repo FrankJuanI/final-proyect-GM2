@@ -7,7 +7,7 @@ import {
   ReactNode,
 } from "react";
 
-export const CartContext = createContext([]);
+export const CartContext = createContext({});
 
 export const useCartContext = () => useContext(CartContext);
 
@@ -22,7 +22,7 @@ interface Product {
   brand: string;
   category: string;
   thumbnail: string;
-  images?: string[];
+  images: string[];
 }
 
 interface CartProduct {
@@ -42,6 +42,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [localCart, setLocalCart] = useState<CartProduct[]>([]);
   const [load, setLoad] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState<number>(0);
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
@@ -50,54 +51,74 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     }
   }, []);
 
+  useEffect(() => {
+    let quantity = 0;
+    for (const item of localCart) {
+      quantity = quantity + item.quantity;
+    }
+    setTotalItems(quantity);
+  }, [localCart]);
+
+  useEffect(() => {
+    let price = 0;
+    for (const item of localCart) {
+      price = price + item.price * item.quantity;
+    }
+    setTotalPrice(price);
+  }, [localCart]);
+
+  const updateCart = (productDetail: Product) => {
+    const updatedLocalCart = localCart.map((product) =>
+      product.id === productDetail.id
+        ? { ...product, quantity: product.quantity + 1 }
+        : product
+    );
+    return updatedLocalCart;
+  };
+
+  const addProductToCart = (productDetail: Product) => {
+    const {
+      id,
+      title,
+      price,
+      images: [image],
+    } = productDetail;
+    const updatedLocalCart = [
+      ...localCart,
+      { id, title, price, image, quantity: 1 },
+    ];
+    return updatedLocalCart;
+  };
+
+  const ProductInCart = (productDetail: Product) => {
+    const isProductInCart = localCart.find(
+      (product) => product.id === productDetail.id
+    );
+    return isProductInCart;
+  };
+
   const addToCart = useCallback(
     (productDetail: Product) => {
-      if (
-        localCart.some(
-          (product: CartProduct) => product.id === productDetail.id
-        )
-      ) {
-        const updatedLocalCart: CartProduct[] = localCart.map(
-          (product: CartProduct) => {
-            if (product.id === productDetail.id) {
-              return { ...product, quantity: product.quantity + 1 };
-            }
-            return product;
-          }
-        );
-        localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
-        setLocalCart(updatedLocalCart);
-      } else {
-        console.log(productDetail.title);
-        const newCartProduct: CartProduct = {
-          id: productDetail.id,
-          title: productDetail.title,
-          price: productDetail.price,
-          image: productDetail.images && productDetail.images[0],
-          quantity: 1,
-        };
-        const updatedLocalCart = [...localCart, newCartProduct];
-        localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
-        setLocalCart(updatedLocalCart);
-      }
-      setTotalPrice(totalPrice + productDetail.price);
+      const productInCart = ProductInCart(productDetail);
+      const updatedLocalCart = productInCart
+        ? updateCart(productDetail)
+        : addProductToCart(productDetail);
+
+      localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
+      setLocalCart(updatedLocalCart);
     },
     [localCart]
   );
 
   const substractionProductQuantity = (id: number) => {
     const updatedLocalCart = localCart.map((product) => {
-      if (product.id === id) {
-        if (product.quantity > 1) {
-          setTotalPrice(totalPrice - product.price);
-          return { ...product, quantity: product.quantity - 1 };
-        }
+      if (product.id === id && product.quantity > 1) {
+        return { ...product, quantity: product.quantity - 1 };
       }
       return product;
     });
     localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
     setLocalCart(updatedLocalCart);
-    2;
   };
 
   const deleteFromCart = (productDetail: Product) => {
@@ -127,6 +148,8 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         deleteFromCart,
         substractionProductQuantity,
         totalPrice,
+        totalItems,
+        ProductInCart,
       }}
     >
       {children}

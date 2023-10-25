@@ -11,16 +11,6 @@ export function CartRow({ product }) {
     deleteFromCart(product);
   };
 
-  // const substractionProductQuantity = () => {
-  //   if (productQuantity === 0) {
-  //     setProductQuantity(0);
-  //   } else {
-  //     setProductQuantity(productQuantity - 1);
-  //   }
-  // };
-
-  // const addProductQuantity = () => setProductQuantity(productQuantity + 1);
-
   useEffect(() => {
     fetch(`https://dummyjson.com/product/${product.id}`)
       .then((res) => res.json())
@@ -44,7 +34,6 @@ export function CartRow({ product }) {
           <p>{product.quantity}</p>
           <button onClick={() => addToCart(product)}>+</button>
         </div>
-        {/* <h4>$ {product.price * productQuantity}</h4> */}
         <div id="img-delete-row">
           <button onClick={handleRemoveClick}>
             <img src="close2.png" alt="" />
