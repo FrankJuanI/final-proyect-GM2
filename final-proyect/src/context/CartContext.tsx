@@ -167,10 +167,13 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   }, []);
 
   const applyPromoCode = (codee: string) => {
+    if (codee === "") {
+      setDefaultPrice();
+      return null;
+    }
     const discount = promoCodes.filter(
       (codeObject) => codeObject.code === codee
     );
-    console.log(discount[0]);
     {
       discount[0] != undefined
         ? applyDiscount(discount[0].discount)
@@ -180,7 +183,6 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   };
 
   const applyDiscount = (discount: number) => {
-    console.log("Aa");
     const newPrice = totalPrice - (totalPrice * discount) / 100;
     setTotalPrice(newPrice.toFixed(2));
   };

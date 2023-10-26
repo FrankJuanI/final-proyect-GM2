@@ -7,28 +7,47 @@ import { useLoginStatus } from "../../context/LoginStatusContext";
 import { useNavigate } from "react-router-dom";
 import debounce from "just-debounce-it";
 
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+
 export function Cart() {
   const navigate = useNavigate();
   const { localCart, totalPrice, totalItems, applyPromoCode } =
     useCartContext();
   const { isAuth } = useLoginStatus();
-  const { promoCodeState, setPromoCodeState } = useState();
+  const [codeState, setCodeState] = useState();
 
   const debouncePromoCodes = debounce((code: string) => {
     applyPromoCode(code);
+    const codee = applyPromoCode(code);
+    setCodeState(codee);
+    console.log(codee);
   }, 600);
 
   useEffect(() => {
     if (isAuth === false) {
       navigate("/not-loggedin");
     }
-  }, [isAuth]);
+  }, [isAuth, navigate]);
 
   const handleOnChangeCodeInput = (code: string) => {
     debouncePromoCodes(code);
   };
 
-  const hendleClickCheckout = (code: string) => {};
+  const hendleClickCheckout = (code: string) => {
+    return code;
+  };
 
   return (
     <>
@@ -41,7 +60,7 @@ export function Cart() {
 
         <div className="cart-resume-container">
           <div className="cart-rows-container">
-            {localCart.map((product) => (
+            {localCart.map((product: Product) => (
               <CartRow
                 key={"rowcart" + product.title + product.id}
                 product={product}
@@ -71,9 +90,17 @@ export function Cart() {
             <div className="total-resume-code-container">
               <p>GIVE CODE</p>
               <input
-                onChange={(event) =>
-                  handleOnChangeCodeInput(event.target.value)
-                }
+                className={`code-input ${
+                  codeState != null
+                    ? codeState[0] === undefined
+                      ? "invalid-code"
+                      : "valid-code"
+                    : null
+                }`}
+                onChange={(event) => {
+                  handleOnChangeCodeInput(event.target.value);
+                  console.log(typeof event.target.value);
+                }}
                 type="text"
               />
             </div>
@@ -82,7 +109,9 @@ export function Cart() {
               <div style={{ color: "green" }}>{totalPrice}</div>
             </div>
             <div className="total-resume-checkout">
-              <button onClick={() => hendleClickCheckout()}>CHECKOUT</button>
+              <button onClick={() => hendleClickCheckout(code)}>
+                CHECKOUT
+              </button>
             </div>
           </div>
         </div>
