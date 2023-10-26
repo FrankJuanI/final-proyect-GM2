@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import arrow from "/right-arrow.svg";
 import "./Filters.css";
 
@@ -12,11 +12,11 @@ export function Filters({ onFilterChange }) {
     title: "",
     brand: "",
     description: "",
-    category: "all", 
+    category: "all",
   });
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products/categories')
+    fetch("https://dummyjson.com/products/categories")
       .then((res) => res.json())
       .then((fetchedCategories: string[]) => {
         const updatedCategories = ["all", ...fetchedCategories];
@@ -28,7 +28,7 @@ export function Filters({ onFilterChange }) {
 
   const toggleViewFilters = () => {
     setBarFilter(!barFilter);
-  }
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -36,13 +36,13 @@ export function Filters({ onFilterChange }) {
       ...filterData,
       [name]: value,
     });
-  }
+  };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(filterData);
-    onFilterChange(filterData); 
-  }
+    onFilterChange(filterData);
+  };
 
   return (
     <div className="filters">
@@ -83,6 +83,7 @@ export function Filters({ onFilterChange }) {
               type="search"
               id="site-search"
               name="title"
+              placeholder="Insert title"
               value={filterData.title}
               onChange={handleInputChange}
             />
@@ -93,6 +94,7 @@ export function Filters({ onFilterChange }) {
               type="search"
               id="site-search"
               name="brand"
+              placeholder="Insert brand"
               value={filterData.brand}
               onChange={handleInputChange}
             />
@@ -103,6 +105,7 @@ export function Filters({ onFilterChange }) {
               type="search"
               id="site-search"
               name="description"
+              placeholder="Insert description"
               value={filterData.description}
               onChange={handleInputChange}
             />
@@ -115,14 +118,18 @@ export function Filters({ onFilterChange }) {
               value={filterData.category}
               onChange={handleInputChange}
             >
-              {categories ? categories.map((categoryName) => (
-                <option key={categoryName} value={categoryName}>
-                  {categoryName}
-                </option>
-              )) : null}
+              {categories
+                ? categories.map((categoryName) => (
+                    <option key={categoryName} value={categoryName}>
+                      {categoryName}
+                    </option>
+                  ))
+                : null}
             </select>
           </div>
-          <button className="apply-filters" type="submit">Apply Filters</button>
+          <button className="apply-filters" type="submit">
+            Apply Filters
+          </button>
         </form>
       </div>
     </div>

@@ -40,7 +40,6 @@ function Card({ productDetail }: CardProps) {
         <Link className="buy-now-button" to={`/checkout/${productDetail.id}`}>
           Buy Now
         </Link>
-        <p>Read Reviews</p>
       </div>
     </div>
   );
