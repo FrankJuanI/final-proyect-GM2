@@ -39,10 +39,38 @@ interface CartContextProviderProps {
 }
 
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
+  const promoCodes = [
+    {
+      code: "ZUeNYmEt",
+      discount: 15,
+    },
+    {
+      code: "cOMaNGeT",
+      discount: 15,
+    },
+    {
+      code: "iPHeoLOu",
+      discount: 15,
+    },
+    {
+      code: "WINgaTER",
+      discount: 15,
+    },
+    {
+      code: "YETInVeN",
+      discount: 15,
+    },
+    {
+      code: "omPicula",
+      discount: 90,
+    },
+  ];
+
   const [localCart, setLocalCart] = useState<CartProduct[]>([]);
   const [load, setLoad] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const [totalItems, setTotalItems] = useState<number>(0);
+  const [price, setPrice] = useState<number>(0);
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
@@ -65,6 +93,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       price = price + item.price * item.quantity;
     }
     setTotalPrice(price);
+    setPrice(price);
   }, [localCart]);
 
   const updateCart = (productDetail: Product) => {
@@ -137,6 +166,29 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       });
   }, []);
 
+  const applyPromoCode = (codee: string) => {
+    const discount = promoCodes.filter(
+      (codeObject) => codeObject.code === codee
+    );
+    console.log(discount[0]);
+    {
+      discount[0] != undefined
+        ? applyDiscount(discount[0].discount)
+        : setDefaultPrice();
+    }
+    return discount;
+  };
+
+  const applyDiscount = (discount: number) => {
+    console.log("Aa");
+    const newPrice = totalPrice - (totalPrice * discount) / 100;
+    setTotalPrice(newPrice.toFixed(2));
+  };
+
+  const setDefaultPrice = () => {
+    setTotalPrice(price);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -150,6 +202,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         totalPrice,
         totalItems,
         ProductInCart,
+        applyPromoCode,
       }}
     >
       {children}

@@ -5,17 +5,30 @@ import { Nav } from "../Nav/Nav";
 import { useCartContext } from "../../context/CartContext";
 import { useLoginStatus } from "../../context/LoginStatusContext";
 import { useNavigate } from "react-router-dom";
+import debounce from "just-debounce-it";
 
 export function Cart() {
   const navigate = useNavigate();
-  const { localCart, totalPrice, totalItems } = useCartContext();
+  const { localCart, totalPrice, totalItems, applyPromoCode } =
+    useCartContext();
   const { isAuth } = useLoginStatus();
+  const { promoCodeState, setPromoCodeState } = useState();
+
+  const debouncePromoCodes = debounce((code: string) => {
+    applyPromoCode(code);
+  }, 600);
 
   useEffect(() => {
     if (isAuth === false) {
       navigate("/not-loggedin");
     }
   }, [isAuth]);
+
+  const handleOnChangeCodeInput = (code: string) => {
+    debouncePromoCodes(code);
+  };
+
+  const hendleClickCheckout = (code: string) => {};
 
   return (
     <>
@@ -57,14 +70,19 @@ export function Cart() {
             </div>
             <div className="total-resume-code-container">
               <p>GIVE CODE</p>
-              <input type="text" />
+              <input
+                onChange={(event) =>
+                  handleOnChangeCodeInput(event.target.value)
+                }
+                type="text"
+              />
             </div>
             <div className="total-resume-toal-price">
               <div>TOTAL PRICE:</div>
               <div style={{ color: "green" }}>{totalPrice}</div>
             </div>
             <div className="total-resume-checkout">
-              <button>CHECKOUT</button>
+              <button onClick={() => hendleClickCheckout()}>CHECKOUT</button>
             </div>
           </div>
         </div>
