@@ -16,9 +16,9 @@ export function Nav() {
   return (
     <nav>
       <div className="about-info">
-        <button className="box-logo" onClick={() => navigate("/")}>
+        <a className="box-logo" href="/">
           <img className="logo" src={gm2Logo} alt="logo" />
-        </button>
+        </a>
         <p className="nav-title">The best ecommerce ever</p>
         <button className={`button-menu`} onClick={toggleMenu}>
           <img src={IconMenu} alt="Menu" />
