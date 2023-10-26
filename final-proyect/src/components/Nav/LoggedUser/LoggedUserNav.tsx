@@ -3,55 +3,63 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Wishlist } from "../WishList/Wishlist";
 import { UserOptions } from "../UserOptions/UserOptions";
+import { useContext } from "react";
+import { LoginStatusContext } from "../../../context/LoginStatusContext";
 export function LoggedUserNav() {
-
-
-  const [ShowProfileOptions, setShowProfileOptions] = useState<boolean>(false)
+  const [ShowProfileOptions, setShowProfileOptions] = useState<boolean>(false);
+  const { auth } = useContext(LoginStatusContext);
 
   const navigate = useNavigate();
 
-  const [showWishlist, setShowWishList] = useState<boolean>(false)
+  const [showWishlist, setShowWishList] = useState<boolean>(false);
 
+  useEffect(() => {
+    const cart = JSON.stringify(localStorage.getItem("cart"));
+  }, []);
 
-  useEffect(()=>{
-    const cart = JSON.stringify(localStorage.getItem("cart"))
-  },[])
-
-  const handleShowWishListButton = ()=> {
-    setShowWishList(!showWishlist)
-  }
+  const handleShowWishListButton = () => {
+    setShowWishList(!showWishlist);
+  };
 
   const hanldeUserImgClick = () => {
-    setShowProfileOptions(!ShowProfileOptions)
-  }
+    setShowProfileOptions(!ShowProfileOptions);
+  };
 
   return (
     <>
       <ul>
         <li>
-          <button onClick={() => navigate("/cart")}>Cart</button>
+          <button className="nav-buttons" onClick={() => navigate("/cart")}>
+            Cart
+          </button>
         </li>
-        <li style={{position:"relative"}}>
-          <button onClick={() => handleShowWishListButton()}>Wishlist</button>
-          {showWishlist === true? <Wishlist/> : null}
+        <li style={{ position: "relative" }}>
+          <button
+            className="nav-buttons"
+            onClick={() => handleShowWishListButton()}
+          >
+            Wishlist
+          </button>
+          {showWishlist === true ? <Wishlist /> : null}
         </li>
         <li>
-          <button onClick={() => navigate("/Shop")}>Shop</button>
+          <button className="nav-buttons" onClick={() => navigate("/Shop")}>
+            Shop
+          </button>
         </li>
       </ul>
-      
-      <ul style={{position:"relative"}}>
+
+      <ul style={{ position: "relative" }}>
         <li>
-            <img
+          <img
             className="user-image"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+            src={auth.image}
             alt="user-image"
             onClick={() => hanldeUserImgClick()}
-            />
-          { ShowProfileOptions ? <UserOptions/> : null  }   
+          />
+          {ShowProfileOptions ? <UserOptions /> : null}
         </li>
       </ul>
-      
     </>
   );
 }

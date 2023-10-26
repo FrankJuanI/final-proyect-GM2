@@ -24,12 +24,21 @@ nav {
   margin-left: 8px;
 }
 
+.about-info p.nav-title {
+  color: #f5f5f5;
+}
+
 .box-logo {
   background-color: transparent;
 }
 
+.box-logo:hover {
+  border: none;
+}
+
 .about-info img {
-  height: 38px;
+  height: 40px;
+  padding: 0;
 }
 
 .interactions {
@@ -46,6 +55,18 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 36px;
+}
+
+.nav-buttons {
+  background-color: transparent;
+  color: #f5f5f5;
+  transition: background-color .4s ease, color .6s ease;
+
+}
+
+.nav-buttons:hover {
+  background-color: #f5f5f5;
+  color: rgb(16, 16, 16);
 }
 
 .interactions ul li a.link {
@@ -81,7 +102,7 @@ nav {
   box-shadow: 0px 0px 10px #a2a2a2;
 }
 
-.user-options li{
+.user-options li {
   width: 150px;
   border: 1px solid black
 }
@@ -94,12 +115,12 @@ nav {
   border-radius: 0px;
 }
 
-#profile-button{
+#profile-button {
   border-bottom: none;
 }
 
 
-.user-options img{
+.user-options img {
   height: 30px;
 }
 
@@ -124,12 +145,14 @@ nav {
   .about-info p.nav-title {
     font-size: 12px;
   }
-  .box-logo{
-  padding:0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  .box-logo {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
   .about-info img {
     height: auto;
     margin-right: 10px;
@@ -168,8 +191,10 @@ nav {
     background-color: black;
     margin-right: .5rem;
   }
-  button.user-profile-button, button.sign-out-button{
-    color: black ;
+
+  button.user-profile-button,
+  button.sign-out-button {
+    color: black;
   }
 }
 
