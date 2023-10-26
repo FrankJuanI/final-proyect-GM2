@@ -40,7 +40,6 @@ export function ProductsDetails() {
   return (
     <>
       <Nav />
-
       <div className="content">
         {productDetail &&
         productDetail.images &&
@@ -60,7 +59,7 @@ export function ProductsDetails() {
                 calculateDiscount(
                   productDetail.price,
                   productDetail.discountPercentage
-                )}
+                ).toFixed(2)}
             </p>
           </div>
           <div className="stock">
@@ -68,7 +67,12 @@ export function ProductsDetails() {
               {productDetail && productDetail.stock} item left
             </p>
             <div className="stock-bar">
-              <div className="progress-stock"></div>
+              <div
+                className="progress-stock"
+                style={{
+                  width: `${productDetail && productDetail.stock}%`,
+                }}
+              ></div>
             </div>
           </div>
           <div className="description-buy">

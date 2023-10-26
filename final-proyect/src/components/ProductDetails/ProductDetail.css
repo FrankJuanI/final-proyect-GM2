@@ -78,7 +78,7 @@
   height: 2vh;
   border-radius: 2px;
   background-color: var(--Red, #f12b2c);
-  width: 40%;
+  max-width: 100%;
 }
 
 .description-buy {
