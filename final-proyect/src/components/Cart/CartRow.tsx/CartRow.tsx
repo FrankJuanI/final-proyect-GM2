@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useCartContext } from "../../../context/CartContext";
 import "../Cart.css";
 
-export function CartRow({ product }) {
+export function CartRow({ product, setCodeState }) {
   const [img, setImg] = useState();
   const { deleteFromCart, localCart, substractionProductQuantity, addToCart } =
     useCartContext();

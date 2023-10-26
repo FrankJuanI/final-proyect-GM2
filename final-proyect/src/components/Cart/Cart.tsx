@@ -64,6 +64,7 @@ export function Cart() {
               <CartRow
                 key={"rowcart" + product.title + product.id}
                 product={product}
+                setCodeState={setCodeState}
               />
             ))}
           </div>
@@ -106,7 +107,7 @@ export function Cart() {
             </div>
             <div className="total-resume-toal-price">
               <div>TOTAL PRICE:</div>
-              <div style={{ color: "green" }}>{totalPrice}</div>
+              <div style={{ color: "green" }}>${totalPrice}</div>
             </div>
             <div className="total-resume-checkout">
               <button onClick={() => hendleClickCheckout(code)}>

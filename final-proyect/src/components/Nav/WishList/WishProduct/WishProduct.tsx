@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useWishListContext } from "../../../../context/WishListContext";
 
 export function WishProduct({ product }) {
-  console.log("product: ", product);
   const navigate = useNavigate();
   const { deleteFromWishlist } = useWishListContext();
 

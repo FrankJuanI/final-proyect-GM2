@@ -71,6 +71,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [totalItems, setTotalItems] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
+  const [discount, setDiscount] = useState<number>(0);
 
   useEffect(() => {
     const cart = localStorage.getItem("cart");
@@ -78,6 +79,11 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       setLocalCart(JSON.parse(cart));
     }
   }, []);
+
+  console.log("cant. items: ", totalItems);
+  console.log("precio sin desc: ", price);
+  console.log("% de descuento: ", discount);
+  console.log("precio -%: ", totalPrice);
 
   useEffect(() => {
     let quantity = 0;
@@ -94,6 +100,16 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     }
     setTotalPrice(price);
     setPrice(price);
+  }, [localCart]);
+
+  useEffect(() => {
+    if (discount) {
+      let price = 0;
+      for (const item of localCart) {
+        price = price + item.price * item.quantity;
+      }
+      setTotalPrice(price - (price * discount) / 100);
+    }
   }, [localCart]);
 
   const updateCart = (productDetail: Product) => {
@@ -168,6 +184,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
   const applyPromoCode = (codee: string) => {
     if (codee === "") {
+      setDiscount(0);
       setDefaultPrice();
       return null;
     }
@@ -184,6 +201,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
   const applyDiscount = (discount: number) => {
     const newPrice = totalPrice - (totalPrice * discount) / 100;
+    setDiscount(discount);
     setTotalPrice(newPrice.toFixed(2));
   };
 
