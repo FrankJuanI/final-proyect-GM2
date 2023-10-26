@@ -1,4 +1,3 @@
-import React from "react";
 import { Card } from "../Card/Card.jsx";
 import { UseDataContext } from "../../context/DataContext.ts";
 import "../Products/Products.css";
@@ -39,12 +38,24 @@ export function Products({ filterCriteria }) {
   const filteredProducts = resdata.filter((product) => {
     // Si la categoría es "All" o coincide con la categoría del producto, y se cumplen las demás condiciones, muestra el producto
     if (
-      (filterCriteria.category === "all" || product.category === filterCriteria.category) &&
-      (filterCriteria.minPrice === "" || product.price >= parseFloat(filterCriteria.minPrice)) &&
-      (filterCriteria.maxPrice === "" || product.price <= parseFloat(filterCriteria.maxPrice)) &&
-      (filterCriteria.title === "" || product.title.toLowerCase().includes(filterCriteria.title.toLowerCase())) &&
-      (filterCriteria.brand === "" || product.brand.toLowerCase().includes(filterCriteria.brand.toLowerCase())) &&
-      (filterCriteria.description === "" || product.description.toLowerCase().includes(filterCriteria.description.toLowerCase()))
+      (filterCriteria.category === "all" ||
+        product.category === filterCriteria.category) &&
+      (filterCriteria.minPrice === "" ||
+        product.price >= parseFloat(filterCriteria.minPrice)) &&
+      (filterCriteria.maxPrice === "" ||
+        product.price <= parseFloat(filterCriteria.maxPrice)) &&
+      (filterCriteria.title === "" ||
+        product.title
+          .toLowerCase()
+          .includes(filterCriteria.title.toLowerCase())) &&
+      (filterCriteria.brand === "" ||
+        product.brand
+          .toLowerCase()
+          .includes(filterCriteria.brand.toLowerCase())) &&
+      (filterCriteria.description === "" ||
+        product.description
+          .toLowerCase()
+          .includes(filterCriteria.description.toLowerCase()))
     ) {
       return true;
     }
@@ -53,15 +64,19 @@ export function Products({ filterCriteria }) {
   });
 
   return (
-    <div className="products">
-      {filteredProducts.map((product) => {
-        return (
-          <Card
-            key={product.id}
-            productDetail={product}
-          />
-        );
-      })}
+    <div
+      className="products"
+      style={{ display: filteredProducts.length === 0 ? "flex " : "grid" }}
+    >
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product) => {
+          return <Card key={product.id} productDetail={product} />;
+        })
+      ) : (
+        <p className="text-not-match">
+          No products were found that match the filters.
+        </p>
+      )}
     </div>
   );
 }
