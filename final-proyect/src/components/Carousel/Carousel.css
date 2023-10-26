@@ -94,38 +94,33 @@ button {
         width: 250px;
     }
 
-@media only screen and (max-width: 425px) {
-    .carousel {
-        gap: .3rem;
+    @media only screen and (max-width: 425px) {
+        .carousel {
+            gap: .3rem;
+        }
+
+        #carousel-image {
+            width: 275px;
+
+        }
+
+        .right-btn .arrow,
+        .left-btn .arrow {
+            padding: 5px;
+        }
     }
 
-    #carousel-image {
-        width: 275px;
-
-    }
-
-    .right-btn .arrow,
-    .left-btn .arrow {
-        padding: 5px;
-    }
-}
+    @media screen and (max-width: 480px) {
+        .carousel {
+            gap: 0.5rem;
+            width: 100%
+        }
 
 
-/* Estilos para pantallas aún más pequeñas */
-@media screen and (max-width: 480px) {
-    .carousel {
-        gap: 0.5rem;
-    }
-
-    #carousel-image {
-        width: 150px;
-    }
-
-    .right-btn .arrow,
-    .left-btn .arrow {
-        padding: 3px;
-    }
-        padding: 4px;
+        .right-btn .arrow,
+        .left-btn .arrow {
+            padding: 3px;
+        }
     }
 
     .carousel-action {
