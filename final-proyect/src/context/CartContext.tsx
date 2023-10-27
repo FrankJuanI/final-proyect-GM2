@@ -107,16 +107,16 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     }
   }, [localCart]);
 
-  const updateCart = (productDetail: Product) => {
+  const updateCart = (productDetail: Product, quantity: number) => {
     const updatedLocalCart = localCart.map((product) =>
       product.id === productDetail.id
-        ? { ...product, quantity: product.quantity + 1 }
+        ? { ...product, quantity: product.quantity + quantity }
         : product
     );
     return updatedLocalCart;
   };
 
-  const addProductToCart = (productDetail: Product) => {
+  const addProductToCart = (productDetail: Product, quantity: number) => {
     const {
       id,
       title,
@@ -125,7 +125,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     } = productDetail;
     const updatedLocalCart = [
       ...localCart,
-      { id, title, price, image, quantity: 1 },
+      { id, title, price, image, quantity: quantity },
     ];
     return updatedLocalCart;
   };
@@ -138,11 +138,11 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   };
 
   const addToCart = useCallback(
-    (productDetail: Product) => {
+    (productDetail: Product, quantity:number) => {
       const productInCart = ProductInCart(productDetail);
       const updatedLocalCart = productInCart
-        ? updateCart(productDetail)
-        : addProductToCart(productDetail);
+        ? updateCart(productDetail, quantity)
+        : addProductToCart(productDetail, quantity);
 
       localStorage.setItem("cart", JSON.stringify(updatedLocalCart));
       setLocalCart(updatedLocalCart);
