@@ -144,7 +144,6 @@
 
 #select-shipping {
   height: 40px;
-  width: 60%;
   background-color: #e6e6e6;
   font-size: 1rem;
 }
@@ -167,6 +166,17 @@
   border: none;
   background-color: #e6e6e6;
   padding-left: 1em;
+  box-sizing: border-box;
+  border: 3px solid transparent;
+}
+
+.invalid-code {
+  border: 3px solid rgb(92, 0, 0) !important;
+  box-sizing: border-box;
+}
+
+.valid-code {
+  border: 3px solid rgb(33, 177, 0) !important;
   box-sizing: border-box;
 }
 
