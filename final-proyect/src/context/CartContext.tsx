@@ -80,11 +80,6 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     }
   }, []);
 
-  console.log("cant. items: ", totalItems);
-  console.log("precio sin desc: ", price);
-  console.log("% de descuento: ", discount);
-  console.log("precio -%: ", totalPrice);
-
   useEffect(() => {
     let quantity = 0;
     for (const item of localCart) {

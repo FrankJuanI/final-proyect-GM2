@@ -40,7 +40,6 @@ export function Filters({ onFilterChange }) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(filterData);
     onFilterChange(filterData);
   };
 
