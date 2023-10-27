@@ -8,34 +8,38 @@ import { useParams, Link } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { useWishListContext } from "../../context/WishListContext.tsx";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import heartfill from "/redheart.png";
+
+
 export function ProductsDetails() {
-  const { addToWishlist, deleteFromWishlist } = useWishListContext();
+  const { addToWishlist, deleteFromWishlist, wishlist } = useWishListContext();
   const { id } = useParams();
 
   const productDetail = useGetProductDetail(id);
 
-  const [isWished, setIsWished] = useState<boolean>(false);
-
   const calculateDiscount = (price: number, discount: number) => {
     return price - (price * discount) / 100;
   };
+  
   const WishlistActions = () => {
     handleClick();
     {
-      !isWished ? toast.success("Add to wish list") : null;
+      wishlist.find((product)=> product.id === productDetail.id) ? toast.success("Add to wish list") : null;
     }
   };
+
+
   const handleClick = () => {
-    if (isWished) {
+    console.log(wishlist)
+    if (wishlist.find((product)=> product.id === productDetail.id)) {
       deleteFromWishlist(productDetail);
-      setIsWished(!isWished);
     } else {
       addToWishlist(productDetail);
-      setIsWished(!isWished);
     }
   };
+
+  console.log(productDetail)
 
   return (
     <>
@@ -112,7 +116,7 @@ export function ProductsDetails() {
                   </div>
                   <div className="wish-list">
                     <button className="action" onClick={WishlistActions}>
-                      <img src={isWished ? heartfill : heart} alt="heart" />
+                      <img src={productDetail && wishlist.find((product) => product.id === productDetail.id) ? heartfill : heart} alt="heart" />
                       Wish List
                     </button>
                   </div>
