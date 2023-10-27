@@ -33,10 +33,10 @@ export function ProductsDetails() {
     }
   };
 
-  console.log(quantity)
+
 
   const handleClick = () => {
-    console.log(wishlist)
+
     if (wishlist.find((product)=> product.id === productDetail.id)) {
       deleteFromWishlist(productDetail);
     } else {
@@ -47,14 +47,14 @@ export function ProductsDetails() {
   const handleSumQuantity = () => {
     if (quantity < productDetail.stock){
       setQuantity(quantity + 1)
-      console.log(quantity + 1)
+
     }
   }
 
   const handleResQuantity = () => {
     if (quantity > 1){
     setQuantity(quantity - 1)
-    console.log(quantity - 1)
+
     }
   }
 
