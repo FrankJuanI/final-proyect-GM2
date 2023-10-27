@@ -14,7 +14,7 @@ export function Wishlist (){
                 <h3>Wishlist</h3>
             </div>
             {
-             wishlist.length != 0 ? wishlist.map((product => <WishProduct product={product}/>)) : <p>Not wished products</p>
+             wishlist.length != 0 ? wishlist.map((product => <WishProduct key={product.id} product={product}/>)) : <p>Not wished products</p>
             }
         </ul>
     )
