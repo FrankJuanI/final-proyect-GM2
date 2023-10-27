@@ -17,7 +17,7 @@ function Card({ productDetail }: CardProps) {
   const { addToCart } = useCartContext();
 
   const handleClick = () => {
-    addToCart(productDetail);
+    addToCart(productDetail, 1);
   };
 
   return (
