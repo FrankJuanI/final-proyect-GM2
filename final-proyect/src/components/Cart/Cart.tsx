@@ -32,7 +32,6 @@ export function Cart() {
     applyPromoCode(code);
     const codee = applyPromoCode(code);
     setCodeState(codee);
-    console.log(codee);
   }, 600);
 
   useEffect(() => {
@@ -100,7 +99,6 @@ export function Cart() {
                 }`}
                 onChange={(event) => {
                   handleOnChangeCodeInput(event.target.value);
-                  console.log(typeof event.target.value);
                 }}
                 type="text"
               />

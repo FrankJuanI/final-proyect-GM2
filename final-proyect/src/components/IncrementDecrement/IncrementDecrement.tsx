@@ -6,7 +6,6 @@ export function IncrementDecrement({ productStock }: { productStock: number }) {
   const [count, setCount] = useState(0);
 
   function increment() {
-    console.log({ count, productStock });
     if (count < productStock) {
       setCount((prev) => prev + 1);
     } else {
