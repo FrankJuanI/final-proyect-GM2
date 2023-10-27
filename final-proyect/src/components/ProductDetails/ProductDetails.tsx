@@ -10,11 +10,15 @@ import { useWishListContext } from "../../context/WishListContext.tsx";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import heartfill from "/redheart.png";
+import { useCartContext } from "../../context/CartContext.tsx";
 
 
 export function ProductsDetails() {
   const { addToWishlist, deleteFromWishlist, wishlist } = useWishListContext();
-  const { id } = useParams();
+  const { addToCart } = useCartContext()
+  const { id } = useParams() ;
+
+  const [quantity, setQuantity] = useState(1)
 
   const productDetail = useGetProductDetail(id);
 
@@ -29,6 +33,7 @@ export function ProductsDetails() {
     }
   };
 
+  console.log(quantity)
 
   const handleClick = () => {
     console.log(wishlist)
@@ -39,7 +44,20 @@ export function ProductsDetails() {
     }
   };
 
-  console.log(productDetail)
+  const handleSumQuantity = () => {
+    if (quantity < productDetail.stock){
+      setQuantity(quantity + 1)
+      console.log(quantity + 1)
+    }
+  }
+
+  const handleResQuantity = () => {
+    if (quantity > 1){
+    setQuantity(quantity - 1)
+    console.log(quantity - 1)
+    }
+  }
+
 
   return (
     <>
@@ -90,7 +108,7 @@ export function ProductsDetails() {
               <div className="select-quantity">
                 <p className="quantity-title">Quantity</p>
                 {productDetail ? (
-                  <IncrementDecrement productStock={productDetail.stock} />
+                  <IncrementDecrement productStock={productDetail.stock} handleSumQuantity={handleSumQuantity} handleResQuantity={handleResQuantity}/>
                 ) : (
                   "load.."
                 )}
@@ -108,6 +126,7 @@ export function ProductsDetails() {
                       className="action"
                       onClick={() => {
                         toast.success("Add to cart");
+                        addToCart(productDetail, quantity)
                       }}
                     >
                       <img src={cart} alt="cart" />
