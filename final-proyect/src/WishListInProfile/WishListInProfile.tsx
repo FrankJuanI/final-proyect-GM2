@@ -11,10 +11,10 @@ export function WishProductInProfile({ product }) {
       onClick={() => navigate(`/product-detail/${product.id}`)}
       className="wish-product-profile"
     >
-      <img src={product.images[0]} alt="" />
+      <img className="img-product-wishlist" src={product.images[0]} alt="" />
       <p className="wishlist-title-product">{product.title}</p>
       <button onClick={() => deleteFromWishlist(product)}>
-        <img src="/close2.png" alt="" />
+        <img className="delete-of-wishlist-img" src="/close2.png" alt="" />
       </button>
     </li>
   );
