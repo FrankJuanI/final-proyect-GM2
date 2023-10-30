@@ -8,36 +8,34 @@ import { useParams, Link } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { useWishListContext } from "../../context/WishListContext.tsx";
 import { toast } from "sonner";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import heartfill from "/redheart.png";
 import { useCartContext } from "../../context/CartContext.tsx";
 
-
 export function ProductsDetails() {
   const { addToWishlist, deleteFromWishlist, wishlist } = useWishListContext();
-  const { addToCart } = useCartContext()
-  const { id } = useParams() ;
+  const { addToCart } = useCartContext();
+  const { id } = useParams();
 
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
 
   const productDetail = useGetProductDetail(id);
 
   const calculateDiscount = (price: number, discount: number) => {
     return price - (price * discount) / 100;
   };
-  
+
   const WishlistActions = () => {
     handleClick();
     {
-      wishlist.find((product)=> product.id === productDetail.id) ? toast.success("Add to wish list") : null;
+      wishlist.find((product) => product.id === productDetail.id)
+        ? toast.error("Remove to wishlist")
+        : toast.success("Add to wishlist");
     }
   };
 
-
-
   const handleClick = () => {
-
-    if (wishlist.find((product)=> product.id === productDetail.id)) {
+    if (wishlist.find((product) => product.id === productDetail.id)) {
       deleteFromWishlist(productDetail);
     } else {
       addToWishlist(productDetail);
@@ -45,19 +43,16 @@ export function ProductsDetails() {
   };
 
   const handleSumQuantity = () => {
-    if (quantity < productDetail.stock){
-      setQuantity(quantity + 1)
-
+    if (quantity < productDetail.stock) {
+      setQuantity(quantity + 1);
     }
-  }
+  };
 
   const handleResQuantity = () => {
-    if (quantity > 1){
-    setQuantity(quantity - 1)
-
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     }
-  }
-
+  };
 
   return (
     <>
@@ -108,7 +103,11 @@ export function ProductsDetails() {
               <div className="select-quantity">
                 <p className="quantity-title">Quantity</p>
                 {productDetail ? (
-                  <IncrementDecrement productStock={productDetail.stock} handleSumQuantity={handleSumQuantity} handleResQuantity={handleResQuantity}/>
+                  <IncrementDecrement
+                    productStock={productDetail.stock}
+                    handleSumQuantity={handleSumQuantity}
+                    handleResQuantity={handleResQuantity}
+                  />
                 ) : (
                   "load.."
                 )}
@@ -125,8 +124,8 @@ export function ProductsDetails() {
                     <button
                       className="action"
                       onClick={() => {
-                        toast.success("Add to cart");
-                        addToCart(productDetail, quantity)
+                        toast.success("Added to cart");
+                        addToCart(productDetail, quantity);
                       }}
                     >
                       <img src={cart} alt="cart" />
@@ -135,7 +134,17 @@ export function ProductsDetails() {
                   </div>
                   <div className="wish-list">
                     <button className="action" onClick={WishlistActions}>
-                      <img src={productDetail && wishlist.find((product) => product.id === productDetail.id) ? heartfill : heart} alt="heart" />
+                      <img
+                        src={
+                          productDetail &&
+                          wishlist.find(
+                            (product) => product.id === productDetail.id
+                          )
+                            ? heartfill
+                            : heart
+                        }
+                        alt="heart"
+                      />
                       Wish List
                     </button>
                   </div>
