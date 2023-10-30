@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
+import { toast } from "sonner";
 
 interface CardProps {
   id: number;
@@ -34,7 +35,13 @@ function Card({ productDetail }: CardProps) {
         </div>
       </div>
       <div className="buttons">
-        <button className="add-to-cart-button" onClick={handleClick}>
+        <button
+          className="add-to-cart-button"
+          onClick={() => {
+            toast.success("Added to cart");
+            handleClick();
+          }}
+        >
           Add to cart
         </button>
         <Link className="buy-now-button" to={`/checkout/${productDetail.id}`}>
