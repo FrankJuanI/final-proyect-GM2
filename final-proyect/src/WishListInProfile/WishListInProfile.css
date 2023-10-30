@@ -82,7 +82,7 @@
   .wish-product-profile button {
     height: auto;
   }
-  .delete-of-wishlist-img {
+  .wish-product-profile img.delete-of-wishlist-img {
     height: 50%;
     width: 20%;
   }
