@@ -16,16 +16,8 @@ export function ProductsDetails() {
   const { addToWishlist, deleteFromWishlist, wishlist } = useWishListContext();
   const { addToCart } = useCartContext();
   const { id } = useParams();
-  // const [productDetail, setProductDetail] = useState(null);
-
   const [quantity, setQuantity] = useState(1);
-
-  const productDetail = useGetProductDetail(id);
-  // useEffect(() => {
-  //   let product = useGetProductDetail(id);
-  //   console.log(product);
-  //   setProductDetail(product);
-  // }, [id]);
+  const { productDetail } = useGetProductDetail(id);
 
   const calculateDiscount = (price: number, discount: number) => {
     return price - (price * discount) / 100;
@@ -65,8 +57,8 @@ export function ProductsDetails() {
       <Nav />
       <div className="content">
         {productDetail &&
-        productDetail.images &&
-        productDetail.images.length !== undefined ? (
+          productDetail.images &&
+          productDetail.images.length !== undefined ? (
           <Carousel pictures={productDetail.images} />
         ) : null}
         <div className="product-info">
@@ -143,9 +135,9 @@ export function ProductsDetails() {
                       <img
                         src={
                           productDetail &&
-                          wishlist.find(
-                            (product) => product.id === productDetail.id
-                          )
+                            wishlist.find(
+                              (product) => product.id === productDetail.id
+                            )
                             ? heartfill
                             : heart
                         }

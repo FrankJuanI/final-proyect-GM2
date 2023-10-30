@@ -1,14 +1,15 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export async function useGetProductDetail(id: number) {
-  // const [productDetail, setProductDetail] = useState();
-  // useEffect(() => {
-  await fetch(`https://dummyjson.com/products/${id}`)
-    .then((productDetail) => productDetail.json())
-    .then((productDetail) => {
-      return productDetail;
-    });
-  // }, []);
+export function useGetProductDetail(id: number) {
+  const [productDetail, setProductDetail] = useState({});
 
-  // return productDetail;
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products/${id}`)
+      .then((productDetail) => productDetail.json())
+      .then((productDetail) => {
+        setProductDetail(productDetail);
+      });
+  }, [id])
+
+  return { productDetail };
 }
