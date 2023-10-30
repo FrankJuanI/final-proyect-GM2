@@ -42,7 +42,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const promoCodes = [
     {
       code: "ZUeNYmEt",
-      discount: 15,
+      discount: 10,
     },
     {
       code: "cOMaNGeT",
@@ -50,19 +50,19 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     },
     {
       code: "iPHeoLOu",
-      discount: 15,
+      discount: 35,
     },
     {
       code: "WINgaTER",
-      discount: 15,
+      discount: 25,
     },
     {
       code: "YETInVeN",
-      discount: 15,
+      discount: 16,
     },
     {
       code: "omPicula",
-      discount: 90,
+      discount: 7,
     },
   ];
 
