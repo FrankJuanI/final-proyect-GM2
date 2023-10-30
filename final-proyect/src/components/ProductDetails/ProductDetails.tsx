@@ -8,7 +8,7 @@ import { useParams, Link } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { useWishListContext } from "../../context/WishListContext.tsx";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import heartfill from "/redheart.png";
 import { useCartContext } from "../../context/CartContext.tsx";
 
@@ -16,10 +16,16 @@ export function ProductsDetails() {
   const { addToWishlist, deleteFromWishlist, wishlist } = useWishListContext();
   const { addToCart } = useCartContext();
   const { id } = useParams();
+  // const [productDetail, setProductDetail] = useState(null);
 
   const [quantity, setQuantity] = useState(1);
 
   const productDetail = useGetProductDetail(id);
+  // useEffect(() => {
+  //   let product = useGetProductDetail(id);
+  //   console.log(product);
+  //   setProductDetail(product);
+  // }, [id]);
 
   const calculateDiscount = (price: number, discount: number) => {
     return price - (price * discount) / 100;
