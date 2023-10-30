@@ -35,12 +35,13 @@ export function LoggedUserNav() {
         </li>
         <li style={{ position: "relative" }}>
           <button
-            className="nav-buttons"
-            onClick={() => handleShowWishListButton()}
+            className={`nav-buttons ${showWishlist ? "active" : ""}`}
+            onMouseDown={() => handleShowWishListButton()}
+            onBlur={() => setShowWishList(false)}
           >
             Wishlist
           </button>
-          {showWishlist === true ? <Wishlist /> : null}
+          {showWishlist && <Wishlist />}
         </li>
         <li>
           <button className="nav-buttons" onClick={() => navigate("/Shop")}>
