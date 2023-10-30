@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useCartContext } from "../../../context/CartContext";
 import "../Cart.css";
 
-export function CartRow({ product, setCodeState }) {
+export function CartRow({ product }) {
   const [img, setImg] = useState();
   const { deleteFromCart, localCart, substractionProductQuantity, addToCart } =
     useCartContext();
@@ -32,7 +32,7 @@ export function CartRow({ product, setCodeState }) {
             -
           </button>
           <p>{product.quantity}</p>
-          <button onClick={() => addToCart(product)}>+</button>
+          <button onClick={() => addToCart(product, 1)}>+</button>
         </div>
         <div id="img-delete-row">
           <button onClick={handleRemoveClick}>

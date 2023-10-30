@@ -138,7 +138,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   };
 
   const addToCart = useCallback(
-    (productDetail: Product, quantity:number) => {
+    (productDetail: Product, quantity: number) => {
       const productInCart = ProductInCart(productDetail);
       const updatedLocalCart = productInCart
         ? updateCart(productDetail, quantity)
