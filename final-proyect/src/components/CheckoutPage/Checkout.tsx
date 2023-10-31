@@ -2,7 +2,7 @@ import "./Checkout.css";
 import cardIcon from "/card.svg";
 import { Nav } from "../Nav/Nav";
 import { useParams } from "react-router-dom";
-import { useGetProductDetail } from "../../hooks/useGetProductDetail";
+import { useGetProductDetail } from "../../hooks/UseGetCheckouData";
 export const CheckoutPage = () => {
   const { productId } = useParams();
 
