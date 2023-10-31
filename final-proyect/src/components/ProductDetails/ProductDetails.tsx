@@ -8,7 +8,7 @@ import { useParams, Link } from "react-router-dom";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { useWishListContext } from "../../context/WishListContext.tsx";
 import { toast } from "sonner";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import heartfill from "/redheart.png";
 import { useCartContext } from "../../context/CartContext.tsx";
 
@@ -57,8 +57,8 @@ export function ProductsDetails() {
       <Nav />
       <div className="content">
         {productDetail &&
-          productDetail.images &&
-          productDetail.images.length !== undefined ? (
+        productDetail.images &&
+        productDetail.images.length !== undefined ? (
           <Carousel pictures={productDetail.images} />
         ) : null}
         <div className="product-info">
@@ -135,9 +135,9 @@ export function ProductsDetails() {
                       <img
                         src={
                           productDetail &&
-                            wishlist.find(
-                              (product) => product.id === productDetail.id
-                            )
+                          wishlist.find(
+                            (product) => product.id === productDetail.id
+                          )
                             ? heartfill
                             : heart
                         }

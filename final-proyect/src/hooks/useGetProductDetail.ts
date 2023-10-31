@@ -9,7 +9,6 @@ export function useGetProductDetail(id: number) {
       .then((productDetail) => {
         setProductDetail(productDetail);
       });
-  }, [id])
-
+  }, [id]);
   return { productDetail };
 }
