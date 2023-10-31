@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
+export function useGetProductDetail(id: number) {
+  const [productDetail, setProductDetail] = useState({});
 
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products/${id}`)
+      .then((productDetail) => productDetail.json())
+      .then((productDetail) => {
+        setProductDetail(productDetail);
+      });
+  }, [id])
 
-export function useGetProductDetail(id : number){
-    const [productDetail, setProductDetail] = useState()
-    useEffect(() =>{
-        fetch(`https://dummyjson.com/products/${id}`)
-        .then(res => res.json())
-        .then((res) => {
-            setProductDetail(res)
-        });
-
-    },[])
-
-
-    return productDetail
+  return { productDetail };
 }
